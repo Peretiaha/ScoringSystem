@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.2.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ScoringSystem.BLL\ScoringSystem.BLL.csproj" />
+    <ProjectReference Include="..\ScoringSystem.DAL\ScoringSystem.DAL.csproj" />
+    <ProjectReference Include="..\ScoringSystem.Model\ScoringSystem.Model.csproj" />
+  </ItemGroup>
+
+</Project>
