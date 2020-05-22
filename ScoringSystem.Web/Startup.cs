@@ -45,8 +45,7 @@ namespace ScoringSystem.Web
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            //var connection = @"Server=localhost;Database=ScoringSystemDb;Trusted_Connection=True;ConnectRetryCount=0";
-            var connection = @"Server=scoring-system-sql-server.database.windows.net;Database=ScoringSystemDb;User ID=maksym;Password=My2271544;Trusted_Connection=False;Encrypt=True;";
+            var connection = @"Server=localhost;Database=ScoringSystemDb;Trusted_Connection=True;ConnectRetryCount=0";
 
             services.AddDbContext<ScoringSystemContext>(options => options.UseSqlServer(connection));
 
@@ -79,8 +78,6 @@ namespace ScoringSystem.Web
 
             var builder = new ContainerBuilder();
             builder.RegisterModule(new InfrastructureContainerConfigurator());
-
-
 
             services
              .AddSingleton<ITokenFactory, JwtTokenFactory>()

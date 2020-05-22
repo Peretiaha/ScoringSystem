@@ -14,5 +14,7 @@ namespace ScoringSystem.BLL.Interfaces
         User GetUserById(int userId);
 
         User GetUserByEmail(string email);
+
+        void ChangePassword(int userId, string password, string newPassword);
     }
 }

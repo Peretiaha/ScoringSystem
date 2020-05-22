@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScoringSystem.DAL", "ScoringSystem.DAL\ScoringSystem.DAL.csproj", "{25D0446D-1F22-4442-A900-B9AF9C8DF1D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScoringSystem.DAL", "ScoringSystem.DAL\ScoringSystem.DAL.csproj", "{25D0446D-1F22-4442-A900-B9AF9C8DF1D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScoringSystem.BLL", "ScoringSystem.BLL\ScoringSystem.BLL.csproj", "{7B362027-A107-43E2-99B3-A53E72960A00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScoringSystem.BLL", "ScoringSystem.BLL\ScoringSystem.BLL.csproj", "{7B362027-A107-43E2-99B3-A53E72960A00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScoringSystem.Model", "ScoringSystem.Model\ScoringSystem.Model.csproj", "{8ED844D5-00CB-415E-A675-9098B1BB3D19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScoringSystem.Model", "ScoringSystem.Model\ScoringSystem.Model.csproj", "{8ED844D5-00CB-415E-A675-9098B1BB3D19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScoringSystem.Infrastructure", "ScoringSystem.Infrastructure\ScoringSystem.Infrastructure.csproj", "{B0510A28-4836-4E31-9928-329E36C20DF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScoringSystem.Infrastructure", "ScoringSystem.Infrastructure\ScoringSystem.Infrastructure.csproj", "{B0510A28-4836-4E31-9928-329E36C20DF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScoringSystem.Web", "ScoringSystem.Web\ScoringSystem.Web.csproj", "{4480C179-46DD-4AC9-9F51-13E629EA7E8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScoringSystem.Web", "ScoringSystem.Web\ScoringSystem.Web.csproj", "{4480C179-46DD-4AC9-9F51-13E629EA7E8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScoringSystem.Web.UnitTests", "ScoringSystem.Web.UnitTests\ScoringSystem.Web.UnitTests.csproj", "{A3250BFC-BF19-440B-9D2D-EB8FB1165443}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4A419055-DE09-4D73-BEB5-570A98ECE59B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +43,16 @@ Global
 		{4480C179-46DD-4AC9-9F51-13E629EA7E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4480C179-46DD-4AC9-9F51-13E629EA7E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4480C179-46DD-4AC9-9F51-13E629EA7E8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3250BFC-BF19-440B-9D2D-EB8FB1165443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3250BFC-BF19-440B-9D2D-EB8FB1165443}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3250BFC-BF19-440B-9D2D-EB8FB1165443}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3250BFC-BF19-440B-9D2D-EB8FB1165443}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A3250BFC-BF19-440B-9D2D-EB8FB1165443} = {4A419055-DE09-4D73-BEB5-570A98ECE59B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2ACB6C75-3B80-4013-AFE6-32E5D80A485C}

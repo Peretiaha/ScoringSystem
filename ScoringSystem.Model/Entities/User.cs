@@ -22,12 +22,11 @@ namespace ScoringSystem.Model.Entities
 
         public Health UserHealth { get; set; }
 
-        public int HealthId { get; set; }
+        public int? HealthId { get; set; }
 
         public Address Address { get; set; }
 
-        public int AddressId { get; set; }
-
+        public int? AddressId { get; set; }
 
         public IEnumerable<BankAccount> BankAccounts { get; set; }
 

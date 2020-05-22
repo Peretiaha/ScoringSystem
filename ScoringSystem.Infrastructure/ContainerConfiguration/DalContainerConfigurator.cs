@@ -1,7 +1,7 @@
 ﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using ScoringSystem.DAL.Context;
+using ScoringSystem.DAL.Repository;
+using ScoringSystem.DAL.UnitOfWork;
 
 namespace ScoringSystem.Infrastructure.ContainerConfiguration
 {
@@ -9,6 +9,10 @@ namespace ScoringSystem.Infrastructure.ContainerConfiguration
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+            builder.RegisterType<ScoringSystemContext>().AsSelf().SingleInstance();
+            builder.RegisterGeneric(typeof(SqlRepository<>)).As(typeof(IRepository<>));
+            builder.RegisterType<RepositoryFactory>().As<IRepositoryFactory>();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ScoringSystem.Model.Entities;
+using ScoringSystem.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,11 @@ namespace ScoringSystem.Web.Mapper
         public MappingProfile()
         {
             CreateMap<User, User>();
+            CreateMap<Bank, BankViewModel>().ReverseMap();
+            CreateMap<User, RegisterViewModel>().ReverseMap();
+            CreateMap<User, LoginViewModel>().ReverseMap();
+            CreateMap<Address, AddressViewModel>().ReverseMap();
+
         }
     }
 }
