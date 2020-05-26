@@ -9,6 +9,8 @@ namespace ScoringSystem.Web.ViewModels
 {
     public class AddressViewModel
     {
+        public int? AddressId { get; set; }
+
         [Required]
         [MinLength(10), MaxLength(30)]
         public string AddressLine1 { get; set; }

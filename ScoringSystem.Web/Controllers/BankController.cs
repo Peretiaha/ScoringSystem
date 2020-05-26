@@ -69,9 +69,10 @@ namespace ScoringSystem.Web.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             _bankService.Delete(id);
+            return Ok();
         }
     }
 }

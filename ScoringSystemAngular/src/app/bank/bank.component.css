@@ -1,0 +1,39 @@
+.list-detail-title {
+    text-align: center;
+}
+
+.navbar {
+    width: 100%;
+    height: 3rem;
+}
+
+.plate {
+    background-color: lightgrey;
+    width: 100%;
+    height: 100%;
+}
+
+.add-titles, .paste-list {
+    float: left;
+    height: 100%;
+    width: 10%;
+}
+
+.paste-list {
+    padding-left: 25%;
+}
+
+button.add, 
+button.paste {
+    height: 100%;
+    width:100%;
+    background-color: lightgrey;
+}
+
+.list-detail-title, p, .list-amount-title p {
+    font-size: large;
+}
+
+.delete-btn {
+    width: 9rem;
+}

@@ -1,0 +1,26 @@
+<div class="container">
+    <h1 mat-dialog-title>{{data.action}} {{bank.name}}</h1>
+    <div class="container">
+      <form [formGroup]="formGroup" mat-dialog-content class="column-group">
+        <mat-dialog-content>
+          <input type="hidden" [hidden]="bank.bankId">
+  
+          <mat-form-field>
+            <input matInput placeholder="Name" placeholder="Name" type="string" formControlName="name"
+              [(ngModel)]="bank.name">
+            <!-- <mat-error *ngIf="formGroup.controls.name.invalid">{{getNameErrorMessage()}}</mat-error> -->
+          </mat-form-field>
+  
+          <mat-form-field>
+            <input matInput type="text" placeholder="Link To Site" formControlName="linkToSite" [(ngModel)]="bank.linkToSite">
+            <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
+          </mat-form-field>
+  
+        </mat-dialog-content>
+        <mat-dialog-actions>
+          <button mat-button (click)="submit(bank)">OK</button>
+          <button mat-button (click)="onCancelClick()">Cancel</button>
+        </mat-dialog-actions>
+      </form>
+    </div>
+  </div>

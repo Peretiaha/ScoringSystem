@@ -1,0 +1,64 @@
+<content>
+    <div class="navbar">
+        <div class="plate">
+            <div class="add-titles">
+                <button mat-button class="add" (click)="openCreateModal()">
+                    + Add new Bank
+                </button>
+            </div>            
+        </div>
+    </div>
+    <div class="list-amount-title">
+        <p>Showing {{dataSource.data.length}} banks </p>
+    </div>
+    <div class="books-main">
+        <div class="books-buttons-field">
+            <button mat-raised-button (click)="masterToggle()" [disabled]="isAllSelected()">Check All</button>
+            <button mat-raised-button (click)="masterToggle()" [disabled]="!isAllSelected()">Uncheck All</button>
+        </div>
+        <div class="delete-button">
+            <button class="delete-btn" mat-raised-button color="warn" (click)="onSelectDelete()">Delete
+                Selected</button>
+        </div>
+        <div class="books">
+            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="select">
+                    <mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                        </mat-checkbox>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                            [aria-label]="checkboxLabel(row)">
+                        </mat-checkbox>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="linkToSite">
+                    <mat-header-cell *matHeaderCellDef> LinkToSite </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.linkToSite}} </mat-cell>
+                </ng-container>               
+
+                <ng-container matColumnDef="delete">
+                    <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <td><button mat-icon-button aria-label="Delete" (click)='onDelete(element.bankId)'>
+                            <mat-icon>delete</mat-icon>
+                            </button></td>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row (dblclick)="onEditModule(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </div>
+    </div>
+</content>

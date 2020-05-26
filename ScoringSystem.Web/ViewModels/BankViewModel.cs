@@ -8,6 +8,8 @@ namespace ScoringSystem.Web.ViewModels
 {
     public class BankViewModel
     {
+        public int? BankId { get; set; }
+
         [Required]
         [MinLength(3), MaxLength(25)]
         public string Name { get; set; }
