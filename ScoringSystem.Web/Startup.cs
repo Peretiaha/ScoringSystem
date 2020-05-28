@@ -79,16 +79,15 @@ namespace ScoringSystem.Web
                     };
                 });
 
+            services
+            .AddSingleton<ITokenFactory, JwtTokenFactory>()
+            .AddTransient<IUserService, UserService>();
+
             var builder = new ContainerBuilder();
             builder.RegisterModule(new InfrastructureContainerConfigurator());
-
-            services
-             .AddSingleton<ITokenFactory, JwtTokenFactory>()
-             .AddTransient<IUserService, UserService>();
-
+            builder.RegisterType<JwtTokenFactory>().As<ITokenFactory>();         
             services.AddControllers();
             services.AddCors();
-
             builder.Populate(services);
             var container = builder.Build();
             return container.Resolve<IServiceProvider>();

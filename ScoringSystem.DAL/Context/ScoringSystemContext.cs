@@ -31,6 +31,7 @@ namespace ScoringSystem.DAL.Context
         {
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new UsersRolesConfiguration());
+            modelBuilder.ApplyConfiguration(new UsersHealthConfiguration());
         }
     }
 }

@@ -10,7 +10,18 @@ namespace ScoringSystem.Web.ViewModels
     {
         public int? BankAccountId { get; set; }
 
-        [Required]
         public CustomerViewModel CustomerViewModel { get; set; }
+
+        [Required]
+        public BankViewModel Bank { get; set; }
+
+        [Required]
+        public string CardNumber { get; set; }
+
+        [Required]
+        public decimal Debt { get; set; }
+
+        [Required]
+        public decimal Credit { get; set; }
     }
 }

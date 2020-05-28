@@ -10,7 +10,11 @@ namespace ScoringSystem.Model.Entities
 
         public User User { get; set; }
 
+        public int UserId { get; set; }
+
         public Bank Bank { get; set; }
+
+        public int BankId { get; set; }
 
         public string CardNumber { get; set; }
 

@@ -20,9 +20,7 @@ namespace ScoringSystem.Model.Entities
 
         public byte[] Photo { get; set; }
 
-        public Health UserHealth { get; set; }
-
-        public int? HealthId { get; set; }
+        public IEnumerable<UsersHealth> UsersHealth { get; set; }
 
         public Address Address { get; set; }
 

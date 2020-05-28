@@ -1,4 +1,6 @@
 import { Address } from './Address';
+import { Health } from './Health';
+import { UsersHealth } from './UsersHealth';
 
 export class User {
     userId: number;
@@ -9,4 +11,5 @@ export class User {
     addressId: number;
     healthId: number;
     address: Address;
+    usersHealth: UsersHealth[];    
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ScoringSystem.DAL.Context;
 
 namespace ScoringSystem.DAL.Migrations
 {
     [DbContext(typeof(ScoringSystemContext))]
-    partial class ScoringSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20200528103424_updateUserAndHealthReletionships")]
+    partial class updateUserAndHealthReletionships
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,7 +76,7 @@ namespace ScoringSystem.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BankId")
+                    b.Property<int?>("BankId")
                         .HasColumnType("int");
 
                     b.Property<string>("CardNumber")
@@ -86,7 +88,7 @@ namespace ScoringSystem.DAL.Migrations
                     b.Property<decimal>("Debt")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("BankAccountId");
@@ -104,9 +106,6 @@ namespace ScoringSystem.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("AnalizDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("ArterialPressure")
                         .HasColumnType("int");
@@ -248,15 +247,11 @@ namespace ScoringSystem.DAL.Migrations
                 {
                     b.HasOne("ScoringSystem.Model.Entities.Bank", "Bank")
                         .WithMany("BankAccounts")
-                        .HasForeignKey("BankId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BankId");
 
                     b.HasOne("ScoringSystem.Model.Entities.User", "User")
                         .WithMany("BankAccounts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("ScoringSystem.Model.Entities.User", b =>

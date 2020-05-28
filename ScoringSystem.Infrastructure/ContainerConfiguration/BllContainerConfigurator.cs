@@ -12,6 +12,8 @@ namespace ScoringSystem.Infrastructure.ContainerConfiguration
             builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterType<RoleService>().As<IRoleService>();
             builder.RegisterType<AddressService>().As<IAddressService>();
+            builder.RegisterType<HealthService>().As<IHealthService>();
+            builder.RegisterType<BankAccountService>().As<IBankAccountService>();
 
         }
     }

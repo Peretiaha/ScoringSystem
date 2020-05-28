@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ScoringSystem.DAL.Context;
 
 namespace ScoringSystem.DAL.Migrations
 {
     [DbContext(typeof(ScoringSystemContext))]
-    partial class ScoringSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20200528152852_addBankIdField")]
+    partial class addBankIdField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,7 +88,7 @@ namespace ScoringSystem.DAL.Migrations
                     b.Property<decimal>("Debt")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("BankAccountId");
@@ -254,9 +256,7 @@ namespace ScoringSystem.DAL.Migrations
 
                     b.HasOne("ScoringSystem.Model.Entities.User", "User")
                         .WithMany("BankAccounts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("ScoringSystem.Model.Entities.User", b =>

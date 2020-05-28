@@ -4,6 +4,7 @@ using ScoringSystem.BLL.Interfaces;
 using ScoringSystem.DAL.UnitOfWork;
 using ScoringSystem.Model.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
 namespace ScoringSystem.BLL.Services
@@ -62,7 +63,11 @@ namespace ScoringSystem.BLL.Services
 
         public User GetUserByEmail(string email)
         {
-            return _unitOfWork.GetRepository<User>().GetSingle(x => x.Email == email);
+            var user = _unitOfWork.GetRepository<User>().GetSingle(x => x.Email == email, x=>x.UsersRoles, x=>x.UsersHealth);
+            user.UsersRoles.ToList().ForEach(x => x.Role = _unitOfWork.GetRepository<Role>().GetSingle(q => q.RoleId == x.RoleId));
+            user.UsersHealth.ToList().ForEach(x => x.Health = _unitOfWork.GetRepository<Health>().GetSingle(q => q.HealthId == x.HealthId));
+
+            return user;
         }
 
         public User GetUserById(int userId)

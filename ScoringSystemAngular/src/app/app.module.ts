@@ -9,10 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material-module';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { BankModalComponent } from './bank/bank-modal/bank-modal.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AddressComponent } from './address/address.component';
+import { HealthComponent } from './health/health.component';
+import { BankAccountComponent } from './bank-account/bank-account.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AddressComponent } from './address/address.component';
     BankModalComponent,
     UserComponent,
     RegistrationComponent,
-    AddressComponent
+    AddressComponent,
+    HealthComponent,
+    BankAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,8 @@ import { AddressComponent } from './address/address.component';
     HttpClientModule,
     MaterialModule,
     CdkTableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

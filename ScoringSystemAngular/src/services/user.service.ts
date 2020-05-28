@@ -5,6 +5,8 @@ import { catchError } from 'rxjs/operators';
 import { RegisterUser } from '../models/RegisterUser'
 import { Address } from 'src/models/Address';
 import { User } from 'src/models/User';
+import { Health } from 'src/models/Health';
+import { BankAccount } from 'src/models/BankAccount';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +38,21 @@ export class UserService {
 
   editUserAddress(address: Address) {
     return this.http.put(this.appUrl+"/address/edit/" + address.addressId, address)
+    .pipe(catchError(this.errorHandler));
+  }
+
+  addHealthToUser(health: Health, userId: number) {
+    return this.http.post(this.appUrl+"/health/add/" + userId, health)
+    .pipe(catchError(this.errorHandler));
+  }
+
+  editUserHealth(health: Health) {
+    return this.http.put(this.appUrl+"/health/edit/" + health.healthId, health)
+    .pipe(catchError(this.errorHandler));
+  }
+
+  addBankAccountToUser(bankAccount: BankAccount, userId: number) {
+    return this.http.post(this.appUrl+"/bankAccount/add/" + userId, bankAccount)
     .pipe(catchError(this.errorHandler));
   }
 

@@ -9,42 +9,43 @@
                 <mat-form-field>
                     <input matInput placeholder="AddressLine1" type="string" formControlName="addressLine1"
                         [(ngModel)]="address.addressLine1">
-                    <!-- <mat-error *ngIf="formGroup.controls.name.invalid">{{getNameErrorMessage()}}</mat-error> -->
+                    <mat-error *ngIf="formGroup.controls.addressLine1.invalid">{{getAddress1ErrorMessage()}}</mat-error>
                 </mat-form-field>
                 <br>
                 <mat-form-field>
                     <input matInput placeholder="AddressLine1" type="string" formControlName="addressLine2"
                         [(ngModel)]="address.addressLine2">
-                    <!-- <mat-error *ngIf="formGroup.controls.name.invalid">{{getNameErrorMessage()}}</mat-error> -->
+                    <mat-error *ngIf="formGroup.controls.addressLine2.invalid">{{getAddress2ErrorMessage()}}</mat-error>
                 </mat-form-field>
                 <br>
                 <mat-form-field>
-                    <input matInput type="text" placeholder="PostCode" formControlName="postCode" [(ngModel)]="address.postCode">
-                    <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
+                    <mat-label>Postal Code</mat-label>
+                    <input matInput type="text" maxlength="8" minlength="5" placeholder="Ex. 94105"  formControlName="postCode" [(ngModel)]="address.postCode">
+                    <mat-error *ngIf="formGroup.controls.postCode.invalid">{{getPostCodeErrorMessage()}}</mat-error>
                 </mat-form-field>
                 <br>
 
                 <mat-form-field>
                     <input matInput type="text" placeholder="Country" formControlName="country"
                         [(ngModel)]="address.country">
-                    <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
+                    <mat-error *ngIf="formGroup.controls.country.invalid">{{getCountryErrorMessage()}}</mat-error>
                 </mat-form-field>
                 <br>
 
                 <mat-form-field>
-                    <input matInput type="text" placeholder="City" formControlName="city"
+                    <mat-label>City</mat-label>
+                    <input matInput type="text" placeholder="Ex. San Francisco" formControlName="city"
                         [(ngModel)]="address.city">
-                    <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
+                    <mat-error *ngIf="formGroup.controls.city.invalid">{{getCityErrorMessage()}}</mat-error>
                 </mat-form-field>
                 <br>
 
                 <mat-form-field>
                     <input matInput type="text" placeholder="State or province" formControlName="stateOrProvince"
                         [(ngModel)]="address.stateOrProvince">
-                    <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
+                    <mat-error *ngIf="formGroup.controls.stateOrProvince.invalid">{{getStateOrProvinceErrorMessage()}}</mat-error>
                 </mat-form-field>
                 <br>
-                <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
 
             </mat-dialog-content>
             <button class="btn-submit" mat-raised-button type="submit" (click)="submit(address)"
