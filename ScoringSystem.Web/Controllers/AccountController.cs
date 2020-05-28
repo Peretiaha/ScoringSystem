@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http.Headers;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ScoringSystem.BLL.Interfaces;
@@ -24,24 +27,56 @@ namespace ScoringSystem.Web.Controllers
             _mapper = mapper;
         }
 
+        [HttpPost("{userId}/uploadImage"), DisableRequestSizeLimit]
+        public IActionResult Upload(int userId)
+        {
+            try
+            {
+                var file = Request.Form.Files[0];
+
+                byte[] imageData = null;
+                using (var binaryReader = new BinaryReader(file.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)file.Length);
+                }
+                var user = _userService.GetUserById(userId);
+                user.Photo = imageData;
+                _userService.Edit(user);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("registration")]
-        public IActionResult Registration(RegisterViewModel registerViewModel)
+        public IActionResult Registration([FromBody] RegisterViewModel registerViewModel)
         {
             if (ModelState.IsValid)
             {
-                var user = _mapper.Map<RegisterViewModel, User>(registerViewModel);
-                var role = _roleService.GetRoleByName("Customer");
-
-                user.UsersRoles = new List<UsersRoles>()
+                if(_userService.GetUserByEmail(registerViewModel.Email) == null)
                 {
-                    new UsersRoles()
-                    {
-                        Role = role
-                    }
-                };
-                _userService.Create(user);
+                    var user = _mapper.Map<RegisterViewModel, User>(registerViewModel);
+                    var role = _roleService.GetRoleByName("Customer");
 
-                return Ok();
+                    user.UsersRoles = new List<UsersRoles>
+                    {
+                        new UsersRoles
+                        {
+                            Role = role
+                        }
+                    };
+                    
+                    _userService.Create(user);
+                    var userId = _userService.GetUserByEmail(user.Email).UserId;
+
+                    return Ok(userId);
+                }
+
+                return BadRequest("User with same Email is exist");
+
             }
 
             return BadRequest(registerViewModel);
@@ -93,5 +128,14 @@ namespace ScoringSystem.Web.Controllers
 
             return BadRequest();
         }
+
+        [HttpGet("{userId}")]
+        public CustomerViewModel GetUserById(int userId)
+        {
+            var user = _mapper.Map<CustomerViewModel>(_userService.GetUserById(userId));
+            user.Address.User = null;
+            return user;
+        }
+
     }
 }

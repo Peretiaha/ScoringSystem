@@ -12,6 +12,7 @@ import { BankModalComponent } from './bank/bank-modal/bank-modal.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AddressComponent } from './address/address.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RegistrationComponent } from './registration/registration.component';
     DeleteModalComponent,
     BankModalComponent,
     UserComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,

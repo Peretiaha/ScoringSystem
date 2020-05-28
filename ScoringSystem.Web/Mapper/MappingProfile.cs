@@ -17,6 +17,7 @@ namespace ScoringSystem.Web.Mapper
             CreateMap<User, RegisterViewModel>().ReverseMap();
             CreateMap<User, LoginViewModel>().ReverseMap();
             CreateMap<Address, AddressViewModel>().ReverseMap();
+            CreateMap<User, CustomerViewModel>().ReverseMap();
 
         }
     }

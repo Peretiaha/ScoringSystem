@@ -5,5 +5,5 @@ export class RegisterUser{
     birthday: Date;
     password: string;
     confirmPassword: string;
-    photo: ImageData;
+    photo: FormData;
 }

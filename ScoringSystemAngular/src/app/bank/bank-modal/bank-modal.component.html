@@ -17,10 +17,14 @@
           </mat-form-field>
   
         </mat-dialog-content>
-        <mat-dialog-actions>
+        <!-- <mat-dialog-actions>
           <button mat-button (click)="submit(bank)">OK</button>
           <button mat-button (click)="onCancelClick()">Cancel</button>
-        </mat-dialog-actions>
+        </mat-dialog-actions> -->
+        <button mat-raised-button type="submit" (click)="submit(bank)" color="primary">Save</button>
       </form>
-    </div>
+      <div mat-dialog-actions>
+        <button mat-raised-button class="close" (click)="onCancelClick()" color="warn">Cancel</button>
+      </div>
+    </div>   
   </div>

@@ -1,62 +1,53 @@
 <div class="container">
     <legend class="main-text">
-        <h2><b>Registration Form</b></h2>
+        <h2><b>Add Address to {{userName}}`s account</b></h2>
     </legend><br>
     <div class="registratiom-form">
         <form [formGroup]="formGroup" mat-dialog-content class="column-group">
             <mat-dialog-content>
 
                 <mat-form-field>
-                    <input matInput placeholder="Name" placeholder="Name" type="string" formControlName="name"
-                        [(ngModel)]="user.name">
+                    <input matInput placeholder="AddressLine1" type="string" formControlName="addressLine1"
+                        [(ngModel)]="address.addressLine1">
                     <!-- <mat-error *ngIf="formGroup.controls.name.invalid">{{getNameErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
                 <mat-form-field>
-                    <input matInput type="text" placeholder="Last Name" formControlName="lastName"
-                        [(ngModel)]="user.lastName">
-                    <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
+                    <input matInput placeholder="AddressLine1" type="string" formControlName="addressLine2"
+                        [(ngModel)]="address.addressLine2">
+                    <!-- <mat-error *ngIf="formGroup.controls.name.invalid">{{getNameErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
                 <mat-form-field>
-                    <input matInput type="text" placeholder="Email" formControlName="email" [(ngModel)]="user.email">
-                    <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
-                </mat-form-field>
-                <br>
-
-                <mat-form-field>
-                    <input matInput type="date" placeholder="Birthday" formControlName="birthday"
-                        [(ngModel)]="user.birthday">
+                    <input matInput type="text" placeholder="PostCode" formControlName="postCode" [(ngModel)]="address.postCode">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
 
                 <mat-form-field>
-                    <input matInput type="password" placeholder="Password" formControlName="password"
-                        [(ngModel)]="user.password">
+                    <input matInput type="text" placeholder="Country" formControlName="country"
+                        [(ngModel)]="address.country">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
 
                 <mat-form-field>
-                    <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword"
-                        [(ngModel)]="user.confirmPassword">
+                    <input matInput type="text" placeholder="City" formControlName="city"
+                        [(ngModel)]="address.city">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
 
-                <div class="dada">
-                    <label for="myfile" class="chous">
-                        <mat-icon>add_a_photo</mat-icon>
-                    </label>
-                    <input #file type="file" placeholder="Photo" formControlName="photo" class="my"
-                        id="myfile"  />
-                </div>
-
+                <mat-form-field>
+                    <input matInput type="text" placeholder="State or province" formControlName="stateOrProvince"
+                        [(ngModel)]="address.stateOrProvince">
+                    <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
+                </mat-form-field>
+                <br>
                 <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
 
             </mat-dialog-content>
-            <button class="btn-submit" mat-raised-button type="submit" (click)="submit(user, file.files)"
+            <button class="btn-submit" mat-raised-button type="submit" (click)="submit(address)"
                 color="primary">Save</button>
         </form>
         <div mat-dialog-actions>

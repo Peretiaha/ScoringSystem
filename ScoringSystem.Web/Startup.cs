@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using ScoringSystem.BLL.Interfaces;
@@ -17,6 +18,7 @@ using ScoringSystem.Infrastructure.ContainerConfiguration;
 using ScoringSystem.Web.Authorization;
 using ScoringSystem.Web.Mapper;
 using System;
+using System.IO;
 using System.Text;
 
 namespace ScoringSystem.Web
@@ -107,6 +109,7 @@ namespace ScoringSystem.Web
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
 
             app.UseRouting();
 

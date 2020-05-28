@@ -4,6 +4,7 @@ using ScoringSystem.BLL.Interfaces;
 using ScoringSystem.DAL.UnitOfWork;
 using ScoringSystem.Model.Entities;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ScoringSystem.BLL.Services
 {
@@ -66,7 +67,8 @@ namespace ScoringSystem.BLL.Services
 
         public User GetUserById(int userId)
         {
-            return _unitOfWork.GetRepository<User>().GetSingle(x => x.UserId == userId);
+            var user = _unitOfWork.GetRepository<User>().GetSingle(x => x.UserId == userId, x => x.Address);
+            return user;
         }
 
         public bool Login(User user)

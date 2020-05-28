@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ScoringSystem.Web.ViewModels
 {
@@ -40,6 +38,6 @@ namespace ScoringSystem.Web.ViewModels
 
         public IEnumerable<Guid> SelectedRoles { get; set; }
 
-        public IFormFile Photo { get; set; }
+        //public IFormFile Photo { get; set; }
     }
 }
