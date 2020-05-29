@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/services/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BankAccount } from 'src/models/BankAccount';
 import { User } from 'src/models/User';
 import { Bank } from 'src/models/bank';
@@ -27,15 +27,17 @@ export class BankAccountComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private bankService: BankService,
-    private popUp: MatSnackBar) {
+    private popUp: MatSnackBar,
+    private router: Router) {
     this.createForm();
   }
 
   ngOnInit(): void {
     this.bankService.fetchBanks().subscribe(x=> this.banks = <Bank[]>x);
     const id = 'id';
+    var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));    
     this.route.params.subscribe(params => this.userId = params[id]);
-    this.userService.getUserById(this.userId).subscribe(x => {
+    this.userService.getUserById(payLoad.userId).subscribe(x => {
       this.userName = x.name;
     });
 
@@ -64,6 +66,7 @@ export class BankAccountComponent implements OnInit {
         x => {
           this.popUp.open('Bank Account successfully added to user data!', 'Ok',
             { duration: 2000, horizontalPosition: 'end', verticalPosition: 'top' });
+            this.router.navigate(['/main']);
         },
         error => {
           const formControl = this.formGroup.controls.name;

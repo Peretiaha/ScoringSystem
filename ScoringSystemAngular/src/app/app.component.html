@@ -3,7 +3,10 @@
   <span class="spacing"></span>
   <div>
     <button mat-button>Title List</button>
-    <button mat-button>Customer List</button>
+    <button routerLink="/account/login" mat-button>Login</button>
+    <button (click)="onLogOut()"  mat-button>Logout</button>
+    <button routerLink="/banks" mat-button>Banks</button>
+
   </div>
 </mat-toolbar>
 

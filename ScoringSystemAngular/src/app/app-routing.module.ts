@@ -7,16 +7,24 @@ import { AddressComponent } from './address/address.component';
 import { HealthComponent } from './health/health.component';
 import { BankAccount } from 'src/models/BankAccount';
 import { BankAccountComponent } from './bank-account/bank-account.component';
+import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './login/forbidden/forbidden.component';
+import { AuthGuard } from './auth/auth.guard';
+import { MainComponent } from './main/main.component';
 
 
 const routes: Routes = [
-  { path: 'banks', component: BankComponent},
-  { path: '', redirectTo: '/banks', pathMatch: 'full' },
+  { path: 'banks', component: BankComponent, canActivate:[AuthGuard], data: { permittedRoles:['Admin'] }},
+  { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'account/', component: UserComponent },
   { path: 'account/registration', component: RegistrationComponent },
-  { path: 'account/:id/address/add', component: AddressComponent},
-  { path: 'account/:id/health/add', component: HealthComponent},
-  { path: 'account/:id/bankAccount/add', component: BankAccountComponent},
+  { path: 'account/:id/address/add', component: AddressComponent, canActivate:[AuthGuard], data: { permittedRoles:['Customer'] }},
+  { path: 'account/:id/health/add', component: HealthComponent, canActivate:[AuthGuard], data: { permittedRoles:['Customer'] }},
+  { path: 'account/:id/bankAccount/add', component: BankAccountComponent, canActivate:[AuthGuard], data: { permittedRoles:['Customer'] }},
+  { path: 'account/login', component: LoginComponent},
+  { path: 'forbidden', component: ForbiddenComponent},
+  { path: 'main', component: MainComponent },
+
 ];
 
 @NgModule({

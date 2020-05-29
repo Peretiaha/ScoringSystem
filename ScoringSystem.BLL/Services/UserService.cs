@@ -64,8 +64,8 @@ namespace ScoringSystem.BLL.Services
         public User GetUserByEmail(string email)
         {
             var user = _unitOfWork.GetRepository<User>().GetSingle(x => x.Email == email, x=>x.UsersRoles, x=>x.UsersHealth);
-            user.UsersRoles.ToList().ForEach(x => x.Role = _unitOfWork.GetRepository<Role>().GetSingle(q => q.RoleId == x.RoleId));
-            user.UsersHealth.ToList().ForEach(x => x.Health = _unitOfWork.GetRepository<Health>().GetSingle(q => q.HealthId == x.HealthId));
+            user?.UsersRoles.ToList().ForEach(x => x.Role = _unitOfWork.GetRepository<Role>().GetSingle(q => q.RoleId == x.RoleId));
+            user?.UsersHealth.ToList().ForEach(x => x.Health = _unitOfWork.GetRepository<Health>().GetSingle(q => q.HealthId == x.HealthId));
 
             return user;
         }

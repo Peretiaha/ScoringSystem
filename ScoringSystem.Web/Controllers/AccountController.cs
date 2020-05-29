@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScoringSystem.BLL.Hash;
 using ScoringSystem.BLL.Interfaces;
@@ -233,14 +235,15 @@ namespace ScoringSystem.Web.Controllers
             return user;
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         public IActionResult Token([FromBody] LoginViewModel credentials)
         {
             var user = _userService.GetUserByEmail(credentials.Email);
             var hashhing = new Hashhing();
             if (user != null && hashhing.VerifyHashPassword(user.Password, credentials.Password))
             {
-                return Ok(GenerateTokenForUser(user));
+                var token = GenerateTokenForUser(user);
+                return Ok(new { token });
             }
 
             return BadRequest("Invalid credentials.");
@@ -250,12 +253,12 @@ namespace ScoringSystem.Web.Controllers
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                new Claim("userId", user.UserId.ToString()),
                 new Claim(ClaimTypes.Name, user.Name),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim("email", user.Email)
             };
 
-            claims.AddRange(user.UsersRoles.Select(role => new Claim(ClaimTypes.Role, role.Role.Name)));
+            claims.AddRange(user.UsersRoles.Select(role => new Claim("roles", role.Role.Name)));
 
             return _tokenFactory.Create(claims);
         }

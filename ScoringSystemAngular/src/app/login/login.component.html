@@ -1,0 +1,29 @@
+<div class="container">
+    <legend class="main-text">
+        <h2><b>Login</b></h2>
+    </legend><br>
+    <div class="registratiom-form">
+        <form [formGroup]="formGroup" mat-dialog-content class="column-group">
+            <mat-dialog-content>
+
+                <mat-form-field>
+                    <input matInput placeholder="Ex. google@gmail.com" type="string" formControlName="email"
+                        [(ngModel)]="loginViewModel.email">
+                    <mat-error *ngIf="formGroup.controls.email.invalid">{{getEmailErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <input matInput placeholder="Password" type="password" formControlName="password"
+                        [(ngModel)]="loginViewModel.password">
+                    <mat-error *ngIf="formGroup.controls.password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <br>                
+            </mat-dialog-content>
+            <button class="btn-submit" mat-raised-button type="submit" (click)="submit(loginViewModel)"
+                color="primary">Save</button>
+        </form>
+        <div mat-dialog-actions>
+            <button mat-button color="primary"  class="btn-submit" routerLink="/account/registration" >Sign Up</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<p>main works!</p>
+<div class="content">
+    <div *ngIf="userId != null" class="address">
+        <button routerLink="/account/{{userId}}/address/add" mat-raised-button type="submit"
+                color="primary">Add Address</button>
+    </div>
+    <div *ngIf="userId != null" class="health">
+        <button routerLink="/account/{{userId}}/health/add" mat-raised-button type="submit"
+                color="primary">Add Health</button>
+    </div>
+    <div *ngIf="userId != null" class="bank-account">
+        <button routerLink="/account/{{userId}}/bankAccount/add" mat-raised-button type="submit"
+                color="primary">Add Bank Account</button>
+    </div>
+</div>

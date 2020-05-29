@@ -7,6 +7,7 @@ import { Address } from 'src/models/Address';
 import { User } from 'src/models/User';
 import { Health } from 'src/models/Health';
 import { BankAccount } from 'src/models/BankAccount';
+import { LoginViewModel } from 'src/models/LoginViewModel';
 
 @Injectable({
   providedIn: 'root'
@@ -61,7 +62,32 @@ export class UserService {
       .subscribe();
   }
 
+  login(loginViewModel: LoginViewModel) {
+    return this.http.post(this.appUrl+"/login", loginViewModel).pipe(catchError(this.errorHandler));
+  }
+
+  roleMatch(allowedRoles: Array<string>) {
+    var isMatch = false;
+    var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    var userRole = <Array<string>>payLoad.roles;
+    if (allowedRoles.filter(x=> userRole.includes(x))) {
+      return isMatch = true;
+    }
+    // allowedRoles.forEach(element => {
+    //   userRole.forEach(role => {
+    //     if (role == element){
+    //       isMatch = true;
+    //     }
+    //   });
+      
+    //   return false;
+    // });
+
+    return isMatch;
+  }
+
   errorHandler(error) {
+    console.log(error);
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;

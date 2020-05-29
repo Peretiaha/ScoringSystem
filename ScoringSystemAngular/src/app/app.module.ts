@@ -15,6 +15,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AddressComponent } from './address/address.component';
 import { HealthComponent } from './health/health.component';
 import { BankAccountComponent } from './bank-account/bank-account.component';
+import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './login/forbidden/forbidden.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { BankAccountComponent } from './bank-account/bank-account.component';
     RegistrationComponent,
     AddressComponent,
     HealthComponent,
-    BankAccountComponent
+    BankAccountComponent,
+    LoginComponent,
+    ForbiddenComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
