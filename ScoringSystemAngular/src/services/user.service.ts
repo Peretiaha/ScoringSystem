@@ -8,6 +8,7 @@ import { User } from 'src/models/User';
 import { Health } from 'src/models/Health';
 import { BankAccount } from 'src/models/BankAccount';
 import { LoginViewModel } from 'src/models/LoginViewModel';
+import { strict } from 'assert';
 
 @Injectable({
   providedIn: 'root'
@@ -28,32 +29,43 @@ export class UserService {
     }).pipe(catchError(this.errorHandler));
   }
 
+  getUserProfile() : Observable<User> {
+    var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')});
+    return this.http.get<User>(this.appUrl+'/profile', {headers: tokenHeader});
+  }
+
   getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(this.appUrl+"/"+userId);
+    var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')});
+    return this.http.get<User>(this.appUrl+"/"+userId,  {headers: tokenHeader});
   }
 
   addAddressToUser(address: Address, userId: number) {
-    return this.http.post(this.appUrl+"/address/add/" + userId, address)
+    var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')});
+    return this.http.post(this.appUrl+"/address/add/" + userId, address, {headers: tokenHeader})
     .pipe(catchError(this.errorHandler));
   }
 
   editUserAddress(address: Address) {
-    return this.http.put(this.appUrl+"/address/edit/" + address.addressId, address)
+    var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')});
+    return this.http.put(this.appUrl+"/address/edit/" + address.addressId, address, {headers: tokenHeader})
     .pipe(catchError(this.errorHandler));
   }
 
   addHealthToUser(health: Health, userId: number) {
-    return this.http.post(this.appUrl+"/health/add/" + userId, health)
+    var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')});
+    return this.http.post(this.appUrl+"/health/add/" + userId, health, {headers: tokenHeader})
     .pipe(catchError(this.errorHandler));
   }
 
   editUserHealth(health: Health) {
-    return this.http.put(this.appUrl+"/health/edit/" + health.healthId, health)
+    var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')});
+    return this.http.put(this.appUrl+"/health/edit/" + health.healthId, health, {headers: tokenHeader})
     .pipe(catchError(this.errorHandler));
   }
 
   addBankAccountToUser(bankAccount: BankAccount, userId: number) {
-    return this.http.post(this.appUrl+"/bankAccount/add/" + userId, bankAccount)
+    var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')});
+    return this.http.post(this.appUrl+"/bankAccount/add/" + userId, bankAccount, {headers: tokenHeader})
     .pipe(catchError(this.errorHandler));
   }
 
@@ -69,25 +81,26 @@ export class UserService {
   roleMatch(allowedRoles: Array<string>) {
     var isMatch = false;
     var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-    var userRole = <Array<string>>payLoad.roles;
-    if (allowedRoles.filter(x=> userRole.includes(x))) {
+    var userRole =payLoad.roles;
+    
+    if (payLoad == null) {
+      return false;
+    }
+    if (typeof(userRole) == typeof("")){
+      if (allowedRoles.includes(<string>userRole))
       return isMatch = true;
     }
-    // allowedRoles.forEach(element => {
-    //   userRole.forEach(role => {
-    //     if (role == element){
-    //       isMatch = true;
-    //     }
-    //   });
-      
-    //   return false;
-    // });
+    else {
+      userRole.forEach(element => {
+        if (allowedRoles.includes(element))
+        return isMatch = true;
+      });
+    }
 
     return isMatch;
   }
 
   errorHandler(error) {
-    console.log(error);
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;

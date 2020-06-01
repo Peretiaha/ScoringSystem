@@ -8,9 +8,17 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'ScoringSystemAngular';
-  
+  userId: number;
+
   constructor(private router: Router){
 
+  }
+
+  ngOnInit(): void {
+    if (localStorage.getItem('token')) {
+      var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+      this.userId = payLoad.userId;
+    }
   }
 
   onLogOut(){

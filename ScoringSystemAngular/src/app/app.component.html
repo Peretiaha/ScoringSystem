@@ -1,15 +1,19 @@
-<mat-toolbar>
-  <a routerLink=""><span>Scoring System</span></a>
+<mat-toolbar class="body">
+  <a class="link" routerLink=""><span>Scoring System</span></a>
   <span class="spacing"></span>
   <div>
-    <button mat-button>Title List</button>
+     <button routerLink="/banks" mat-button>Banks</button>
     <button routerLink="/account/login" mat-button>Login</button>
     <button (click)="onLogOut()"  mat-button>Logout</button>
-    <button routerLink="/banks" mat-button>Banks</button>
+    <div class="btn-profile">
+      <button routerLink="account/profile" mat-icon-button aria-label="Profile">
+        <mat-icon>account_circle</mat-icon>
+        </button>
+    </div>
 
   </div>
 </mat-toolbar>
 
-<div class="container">
+<div class="containers">
   <router-outlet></router-outlet>
 </div>

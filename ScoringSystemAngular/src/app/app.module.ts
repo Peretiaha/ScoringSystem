@@ -18,6 +18,10 @@ import { BankAccountComponent } from './bank-account/bank-account.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './login/forbidden/forbidden.component';
 import { MainComponent } from './main/main.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { MainComponent } from './main/main.component';
     BankAccountComponent,
     LoginComponent,
     ForbiddenComponent,
-    MainComponent
+    MainComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,10 @@ import { MainComponent } from './main/main.component';
     MaterialModule,
     CdkTableModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule,
+    NgbPaginationModule,
+    NgbAlertModule
     ],
   providers: [],
   bootstrap: [AppComponent]

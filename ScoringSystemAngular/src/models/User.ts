@@ -1,6 +1,6 @@
 import { Address } from './Address';
-import { Health } from './Health';
 import { UsersHealth } from './UsersHealth';
+import { BankAccount } from './BankAccount';
 
 export class User {
     userId: number;
@@ -8,8 +8,10 @@ export class User {
     lastName: string;
     birthday: Date;
     email: string;
+    photo: string;
     addressId: number;
     healthId: number;
     address: Address;
     usersHealth: UsersHealth[];    
+    bankAccounts: BankAccount[];
 }

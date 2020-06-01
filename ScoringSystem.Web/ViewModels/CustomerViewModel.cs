@@ -18,7 +18,7 @@ namespace ScoringSystem.Web.ViewModels
 
         public string Email { get; set; }
 
-        public byte[] Photo { get; set; }
+        public string Photo { get; set; }
 
         public IEnumerable<UsersHealth> UsersHealth { get; set; }
 

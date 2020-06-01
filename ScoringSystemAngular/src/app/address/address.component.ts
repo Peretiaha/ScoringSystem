@@ -28,10 +28,10 @@ export class AddressComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //const id = 'id';
-    //this.route.params.subscribe(params => this.userId = params[id]);
+    const id = 'id';
+    this.route.params.subscribe(params => this.userId = params[id]);
     var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-    this.userService.getUserById(payLoad.userId).subscribe(x => {
+    this.userService.getUserProfile().subscribe(x => {
       if (x.address != null) {
         this.address = x.address;
       }
@@ -51,7 +51,6 @@ export class AddressComponent implements OnInit {
   }
 
   onCancelClick(): void {
-    console.log(this.user);
   }
 
   submit(address: Address): void {

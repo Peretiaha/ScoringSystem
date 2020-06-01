@@ -96,6 +96,7 @@ namespace ScoringSystem.Web.Controllers
         }
 
         [HttpPost("{userId}/changePassword")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult ChangePassword(int userId, ChangePasswordViewModel changePasswordViewModel)
         {
             if (ModelState.IsValid)
@@ -108,6 +109,7 @@ namespace ScoringSystem.Web.Controllers
         } 
 
         [HttpPost("address/add/{userId}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult AddAddress(int userId, AddressViewModel addressViewModel)
         {
             if(ModelState.IsValid)
@@ -127,6 +129,7 @@ namespace ScoringSystem.Web.Controllers
         }
 
         [HttpPut("address/edit/{addressId}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult EditAddress(int addressId, AddressViewModel addressViewModel)
         {
             if (ModelState.IsValid)
@@ -143,6 +146,7 @@ namespace ScoringSystem.Web.Controllers
         }
 
         [HttpPost("health/add/{userId}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult AddHealth(int userId, HealthViewModel healthViewModel)
         {
             if (ModelState.IsValid)
@@ -167,6 +171,7 @@ namespace ScoringSystem.Web.Controllers
         }
 
         [HttpPut("health/edit/{healthId}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult EditHealth(int addressId, AddressViewModel addressViewModel)
         {
             if (ModelState.IsValid)
@@ -183,6 +188,7 @@ namespace ScoringSystem.Web.Controllers
         }
 
         [HttpPost("bankAccount/add/{userId}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult AddBankAccount(int userId, BankAccountViewModel bankAccountViewModel)
         {
             if (ModelState.IsValid)
@@ -201,7 +207,8 @@ namespace ScoringSystem.Web.Controllers
             return BadRequest();
         }
 
-        [HttpPut("address/edit/{bankAccountId}")]
+        [HttpPut("bankAccount/edit/{bankAccountId}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult EditBankAccount(int bankAccountId, BankAccountViewModel bankAccountViewModel)
         {
             if (ModelState.IsValid)
@@ -218,10 +225,32 @@ namespace ScoringSystem.Web.Controllers
         }
 
         [HttpGet("{userId}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         public CustomerViewModel GetUserById(int userId)
         {
             var user = _mapper.Map<CustomerViewModel>(_userService.GetUserById(userId));
             
+            if (user == null)
+            {
+                return null;
+            }
+
+            if (user.Address != null)
+            {
+                user.Address.User = null;
+            }
+
+            return user;
+        }
+
+        [HttpGet("profile")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public CustomerViewModel Profile()
+        {
+            var userId = int.Parse(User.Claims.First(x=>x.Type == "userId").Value);
+
+            var user = _mapper.Map<CustomerViewModel>(_userService.GetUserById(userId));
+
             if (user == null)
             {
                 return null;

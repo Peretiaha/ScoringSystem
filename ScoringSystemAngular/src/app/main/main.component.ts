@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-main',
@@ -9,13 +10,12 @@ export class MainComponent implements OnInit {
 
   userId: number;
 
-  constructor() { }
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('token')) {
-      var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-      this.userId = payLoad.userId;
-    }
+    
   }
 
 }

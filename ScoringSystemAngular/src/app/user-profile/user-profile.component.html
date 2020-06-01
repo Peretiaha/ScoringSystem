@@ -1,0 +1,123 @@
+<div class="content">
+  <h1>{{user.name}}`s Profile</h1>
+  <div class="image">
+    <img style="border-style: groove;border-color: yellowgreen;border-radius: 10px;" 
+      height="350" width="280" class="image-fit" src={{user.photo}} />
+  </div>
+  <div class="main-info block">
+    <div class="title">
+      <h4>Main Informaition</h4>
+      <hr color="yellowgreen"/>
+    </div>
+    <div class="data">
+
+    <table class="table table-striped info">    
+      <tbody>
+      <tr >
+        <td class="icon"><mat-icon>perm_identity</mat-icon></td>
+        <td>Name: </td>
+        <td>{{ user.name  }}</td>
+      </tr>
+      <tr >
+        <td><mat-icon>perm_identity</mat-icon></td>
+        <td>LastName: </td>
+        <td>{{ user.lastName  }}</td>
+      </tr>
+      <tr >
+        <td class="icon"><mat-icon>alternate_email</mat-icon></td>
+        <td>Email: </td>
+        <td>{{ user.email  }}</td>
+      </tr>
+      <tr >
+        <td class="icon"><mat-icon>cake</mat-icon></td>
+        <td>Birthday: </td>
+        <td>{{ user.birthday  }}</td>
+      </tr>
+      </tbody>
+    </table>    
+  </div>
+
+  </div>
+  <div class="person-data block">
+
+    <ul (click)="Print()" ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+      <li [ngbNavItem]="1">
+        <a ngbNavLink>Address</a>
+        <ng-template ngbNavContent>
+          <div *ngIf="user.address != null" class="address">
+            <table class="table table-striped info">    
+              <tbody>
+              <tr >
+                <td class="icon"><mat-icon> location_on</mat-icon></td>
+                <td>AddressLine1: </td>
+                <td>{{ user.address.addressLine1  }}</td>
+              </tr>
+              <tr >
+                <td class="icon"><mat-icon> location_on</mat-icon></td>
+                <td>AddressLine2: </td>
+                <td>{{ user.address.addressLine2  }}</td>
+              </tr>
+              <tr >
+                <td class="icon"><mat-icon> local_post_office</mat-icon></td>
+                <td>Post Code: </td>
+                <td>{{ user.address.postCode  }}</td>
+              </tr>
+              <tr >
+                <td class="icon"><mat-icon>public</mat-icon></td>
+                <td>Country: </td>
+                <td>{{ user.address.country  }}</td>
+              </tr>
+              <tr >
+                <td class="icon"><mat-icon>location_city</mat-icon></td>
+                <td>City: </td>
+                <td>{{ user.address.city  }}</td>
+              </tr>
+              <tr >
+                <td class="icon"><mat-icon>domain</mat-icon></td>
+                <td>State Or Province: </td>
+                <td>{{ user.address.stateOrProvince  }}</td>
+              </tr>            
+
+              </tbody>
+            </table>    
+          </div>
+          <div class="address">
+            <button routerLink="/account/{{user.userId}}/address/add" mat-raised-button type="submit"
+              color="primary">Add Address</button>
+          </div>
+        </ng-template>
+      </li>
+
+      <li [ngbNavItem]="2">
+        <a ngbNavLink>Health</a>
+        <ng-template ngbNavContent>
+          <div class="health">
+
+
+            <!-- <div class="card-body">
+              <div *ngFor="let item of pageOfHealth">{{item.health.bloodSugar}}</div>
+          </div>
+          <div class="card-footer pb-0 pt-3">
+              <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+          </div> -->
+            
+
+            <button routerLink="/account/{{user.userId}}/health/add" mat-raised-button type="submit" color="primary">Add
+              Health</button>
+          </div>
+        </ng-template>
+      </li>
+
+      <li [ngbNavItem]="3">
+        <a ngbNavLink>Bank Account</a>
+        <ng-template ngbNavContent>
+          <div class="bank-account">
+            <button routerLink="/account/{{user.userId}}/bankAccount/add" mat-raised-button type="submit"
+              color="primary">Add Bank Account</button>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  </div>
+</div>

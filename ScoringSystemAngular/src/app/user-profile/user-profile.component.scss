@@ -1,0 +1,75 @@
+
+.content {
+    height: 100%;
+    padding: 0px 30px 0px 30px;
+}
+
+.image {
+    width: 15%;
+    padding: 30px 0px 0px 30px;
+    float: left;
+}
+
+.main-info {
+    margin-left: 150px;
+}
+
+.person-data {
+    margin-left: 50px;}
+
+.block {
+    margin-top: 30px;
+    border-radius: 10px;
+    border-style: groove;
+    padding:2px 4px;
+    border-color: yellowgreen;
+    float: left;
+    min-height: 550px;
+    width: 30%;
+}
+
+h1 {
+    color: white;
+}
+
+a {
+    color: yellowgreen;
+}
+
+.title {
+    color: white;
+    padding-top: 5px;
+    text-align: center;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.data {
+    width: 100%;
+    height: 100%;
+
+}
+
+.label, p {
+    float: left;
+    color: white;
+    font-size: 15px;
+}
+
+p {
+    margin-left: 40px;
+}
+
+.line {
+    width: 100%;
+    height: 50px;
+}
+
+td {
+    color: white;
+}
+
+.icon {
+    width: 10%;
+}

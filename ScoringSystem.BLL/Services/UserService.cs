@@ -72,7 +72,20 @@ namespace ScoringSystem.BLL.Services
 
         public User GetUserById(int userId)
         {
-            var user = _unitOfWork.GetRepository<User>().GetSingle(x => x.UserId == userId, x => x.Address);
+            var user = _unitOfWork.GetRepository<User>().GetSingle(x => x.UserId == userId, x => x.Address, x=>x.BankAccounts, x=>x.UsersHealth);
+
+            foreach(var userHealth in user.UsersHealth)
+            {
+                userHealth.User = null;
+                userHealth.Health = _unitOfWork.GetRepository<Health>().GetSingle(x=>x.HealthId == userHealth.HealthId);
+                userHealth.Health.UsersHealth = null;
+            }
+
+            foreach (var account in user.BankAccounts)
+            {
+                account.User = null;
+            }
+
             return user;
         }
 

@@ -31,7 +31,7 @@ export class HealthComponent implements OnInit {
     const id = 'id';
     this.route.params.subscribe(params => this.userId = params[id]);
     var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-    this.userService.getUserById(payLoad.userId).subscribe(x => {
+    this.userService.getUserProfile().subscribe(x => {
       this.userName = x.name;
     });
   }

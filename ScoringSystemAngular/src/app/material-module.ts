@@ -10,6 +10,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatOptionModule} from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
     exports: [
@@ -26,6 +27,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
         MatDialogModule,
         MatIconModule,
         MatToolbarModule,
+        MatMenuModule        
     ]
   })
 
