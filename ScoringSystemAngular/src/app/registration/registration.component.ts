@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/services/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RegisterUser } from 'src/models/RegisterUser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registration',
@@ -16,7 +17,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private popUp: MatSnackBar) {
+    private popUp: MatSnackBar,
+    public translate: TranslateService) {      
     this.createForm();
   }
   ngOnInit(): void {

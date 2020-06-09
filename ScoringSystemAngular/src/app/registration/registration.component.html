@@ -1,45 +1,45 @@
 <div class="container">
     <legend class="main-text">
-        <h2><b>Registration Form</b></h2>
+        <h2><b>{{'Registration.registrationForm' | translate}}</b></h2>
     </legend><br>
     <div class="registratiom-form">
         <form [formGroup]="formGroup" mat-dialog-content class="column-group">
             <mat-dialog-content>
 
                 <mat-form-field>
-                    <input matInput placeholder="Name" placeholder="Name" type="string" formControlName="name"
+                    <input matInput placeholder="{{'Registration.name' | translate}}" placeholder="Name" type="string" formControlName="name"
                         [(ngModel)]="user.name">
                     <!-- <mat-error *ngIf="formGroup.controls.name.invalid">{{getNameErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
                 <mat-form-field>
-                    <input matInput type="text" placeholder="Last Name" formControlName="lastName"
+                    <input matInput type="text" placeholder="{{'Registration.lastName' | translate}}" formControlName="lastName"
                         [(ngModel)]="user.lastName">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
                 <mat-form-field>
-                    <input matInput type="text" placeholder="Email" formControlName="email" [(ngModel)]="user.email">
+                    <input matInput type="text" placeholder="{{'Registration.email' | translate}}" formControlName="email" [(ngModel)]="user.email">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
 
                 <mat-form-field>
-                    <input matInput type="date" placeholder="Birthday" formControlName="birthday"
+                    <input matInput type="date" placeholder="{{'Registration.birthday' | translate}}" formControlName="birthday"
                         [(ngModel)]="user.birthday">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
 
                 <mat-form-field>
-                    <input matInput type="password" placeholder="Password" formControlName="password"
+                    <input matInput type="password" placeholder="{{'Registration.password' | translate}}" formControlName="password"
                         [(ngModel)]="user.password">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
 
                 <mat-form-field>
-                    <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword"
+                    <input matInput type="password" placeholder="{{'Registration.confirmPassword' | translate}}" formControlName="confirmPassword"
                         [(ngModel)]="user.confirmPassword">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
@@ -57,10 +57,11 @@
 
             </mat-dialog-content>
             <button class="btn-submit" mat-raised-button type="submit" (click)="submit(user, file.files)"
-                color="primary">Save</button>
+                color="primary">{{'Registration.save' | translate}}</button>
         </form>
         <div mat-dialog-actions>
-            <button mat-raised-button class="btn-close" (click)="onCancelClick()" color="warn">Cancel</button>
+            <button mat-raised-button class="btn-close" (click)="onCancelClick()" routerLink="/account/login"
+            color="warn">{{'Registration.cancel' | translate}}</button>
         </div>
     </div>
 </div>

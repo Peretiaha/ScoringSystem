@@ -1,16 +1,23 @@
 <mat-toolbar class="body">
   <a class="link" routerLink=""><span>Scoring System</span></a>
   <span class="spacing"></span>
-  <div>
-     <button routerLink="/banks" mat-button>Banks</button>
-    <button routerLink="/account/login" mat-button>Login</button>
-    <button (click)="onLogOut()"  mat-button>Logout</button>
-    <div class="btn-profile">
-      <button routerLink="account/profile" mat-icon-button aria-label="Profile">
-        <mat-icon>account_circle</mat-icon>
-        </button>
-    </div>
+  <div class="lang" style="width: 100%;">
+    <mat-label>{{'App.language' | translate}} </mat-label>
+    <select class="lang-dropdown" #langselect (change)="translate.use(langselect.value)">
+      <option style="background-color: #222629;" *ngFor="let ln of translate.getLangs()" [value]="ln">
+        {{ ln }}
+      </option>
+    </select>
 
+    <div class="profile">
+      <div class="log">
+        <button *ngIf="userId == null" routerLink="/account/login" mat-button>{{'App.login' | translate}}</button>
+        <button *ngIf="userId != null" (click)="onLogOut()" mat-button>{{'App.logout' | translate}}</button>
+      </div>
+      <button *ngIf="userId != null" routerLink="account/profile" mat-icon-button aria-label="Profile">
+        <mat-icon style="font-size: 25px;">account_circle</mat-icon>
+      </button>
+    </div>
   </div>
 </mat-toolbar>
 

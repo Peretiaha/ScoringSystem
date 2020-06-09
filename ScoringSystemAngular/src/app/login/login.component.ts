@@ -4,6 +4,8 @@ import { UserService } from 'src/services/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginViewModel } from 'src/models/LoginViewModel';
+import { TranslateService } from '@ngx-translate/core';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login',
@@ -18,8 +20,10 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private popUp: MatSnackBar,
-    private router: Router) {
-    this.createForm();
+    private router: Router,
+    public translate: TranslateService,
+    private appComponent: AppComponent) {
+      this.createForm();
   }
 
   ngOnInit(): void {
@@ -44,6 +48,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', x.token);
           this.popUp.open('Login successfully!', 'Ok',
             { duration: 2000, horizontalPosition: 'end', verticalPosition: 'top' });
+            this.appComponent.ngOnInit();
             this.router.navigate(['/main']);
         },
         error => {

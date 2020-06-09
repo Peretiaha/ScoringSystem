@@ -64,6 +64,34 @@ namespace ScoringSystem.Web.Controllers
             }
         }
 
+        [HttpGet("all")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Manager")]
+        public IEnumerable<UserViewModel> GetAll()
+        {
+            var users = _userService.GetAllUsers().ToList();
+
+            var usersViewModel = _mapper.Map<IEnumerable<UserViewModel>>(users).ToList();
+
+            for (var i =0; i< usersViewModel.Count; i++)
+            {
+                if (users[i].UsersHealth.ToList().Count > 0)
+                {
+                    usersViewModel[i].WeightAverage = (int)users[i].UsersHealth.Select(x => x.Health.Weight).ToList().Average();
+                    usersViewModel[i].HeartRateAverage = (int)users[i].UsersHealth.Select(x => x.Health.HeartRate).ToList().Average();
+                    usersViewModel[i].BilurubinAverage = (int)users[i].UsersHealth.Select(x => x.Health.Bilirubin).ToList().Average();
+                    usersViewModel[i].LastanalizDate = users[i].UsersHealth.Select(x => x.Health.AnalizDate).OrderByDescending(x=>x.Date).FirstOrDefault();
+                }
+
+                if (users[i].BankAccounts.ToList().Count > 0)
+                {
+                    usersViewModel[i].TotalCredit = users[i].BankAccounts.Select(x => x.Credit).ToList().Sum();
+                    usersViewModel[i].TotalDebt = users[i].BankAccounts.Select(x => x.Debt).ToList().Sum();
+                }
+            }
+
+            return usersViewModel;
+        }
+
         [HttpPost("registration")]
         public IActionResult Registration([FromBody] RegisterViewModel registerViewModel)
         {
@@ -126,7 +154,7 @@ namespace ScoringSystem.Web.Controllers
             }
 
             return BadRequest();
-        }
+        }      
 
         [HttpPut("address/edit/{addressId}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -146,7 +174,7 @@ namespace ScoringSystem.Web.Controllers
         }
 
         [HttpPost("health/add/{userId}")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult AddHealth(int userId, HealthViewModel healthViewModel)
         {
             if (ModelState.IsValid)
@@ -263,6 +291,21 @@ namespace ScoringSystem.Web.Controllers
 
             return user;
         }
+
+        [HttpGet("login/{email}/{password}")]
+        public string Token(string email, string password)
+        {
+            var user = _userService.GetUserByEmail(email);
+            var hashhing = new Hashhing();
+            if (user != null && hashhing.VerifyHashPassword(user.Password, password))
+            {
+                var token = GenerateTokenForUser(user);
+                return token;
+            }
+
+            return null;
+        }
+
 
         [HttpPost("login")]
         public IActionResult Token([FromBody] LoginViewModel credentials)

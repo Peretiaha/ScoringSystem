@@ -4,6 +4,7 @@ import { UserService } from 'src/services/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Health } from 'src/models/Health';
+import { TranslateService } from '@ngx-translate/core';
 import { User } from 'src/models/User';
 
 @Component({
@@ -23,7 +24,8 @@ export class HealthComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private popUp: MatSnackBar,
-    private router: Router) {
+    private router: Router,
+    public translate: TranslateService) {
     this.createForm();
   }
 
@@ -43,7 +45,6 @@ export class HealthComponent implements OnInit {
       numberOfRespiratoryMovements: new FormControl('', [Validators.required]),
       heartRate: new FormControl('', [Validators.required]),
       hemoglobin: new FormControl('', [Validators.required]),
-      weighBilirubint: new FormControl('', [Validators.required]),
       bloodSugar: new FormControl('', [Validators.required]),
       whiteBloodCells: new FormControl('', [Validators.required]),
       bodyTemperature: new FormControl('', [Validators.required]),

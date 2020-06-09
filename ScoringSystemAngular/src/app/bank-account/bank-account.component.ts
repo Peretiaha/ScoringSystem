@@ -7,6 +7,7 @@ import { BankAccount } from 'src/models/BankAccount';
 import { User } from 'src/models/User';
 import { Bank } from 'src/models/bank';
 import { BankService } from 'src/services/bank.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-bank-account',
@@ -28,7 +29,8 @@ export class BankAccountComponent implements OnInit {
     private userService: UserService,
     private bankService: BankService,
     private popUp: MatSnackBar,
-    private router: Router) {
+    private router: Router,
+    public translate: TranslateService) {
     this.createForm();
   }
 
@@ -37,7 +39,7 @@ export class BankAccountComponent implements OnInit {
     const id = 'id';
     var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));    
     this.route.params.subscribe(params => this.userId = params[id]);
-    this.userService.getUserById(payLoad.userId).subscribe(x => {
+    this.userService.getUserProfile().subscribe(x => {
       this.userName = x.name;
     });
 

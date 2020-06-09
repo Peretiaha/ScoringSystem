@@ -1,0 +1,51 @@
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding-top: 7px;
+}
+
+
+.list-amount-title {
+    color: white;
+}
+
+mat-table {
+    color: white;
+    background-color: #474b4f;
+}
+
+mat-checkbox, mat-header-cell, mat-cell {
+    color: white;
+}
+
+mat-row, mat-header-row {
+    border-color: yellowgreen;
+}
+
+
+button {
+    width: 90px;
+    height: 35px;
+    color: white;
+    background-color: #474b47;
+    border-style: groove;
+    border-color: yellowgreen;
+    border-radius: 10px;
+}
+
+mat-select {
+    float: left;
+    background-color: white;
+    width: 40%;
+}
+
+mat-raised-button {
+    float: right;
+}
+
+form {
+    width: 100%;
+}

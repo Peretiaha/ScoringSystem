@@ -1,53 +1,46 @@
 <div class="container">
     <legend class="main-text">
-        <h2><b>Add Health data to {{userName}}`s account</b></h2>
+        <h2><b>{{'Health.addHealth' | translate}} {{userName}}`s {{'Health.account' | translate}}</b></h2>
     </legend><br>
     <div class="registratiom-form">
         <form [formGroup]="formGroup" mat-dialog-content class="column-group">
             <mat-dialog-content>
 
                 <mat-form-field>
-                    <input matInput placeholder="Weight" type="number" formControlName="weight"
+                    <input matInput placeholder="{{'Health.weight' | translate}}" type="number" formControlName="weight"
                         [(ngModel)]="health.weight">
                     <!-- <mat-error *ngIf="formGroup.controls.name.invalid">{{getNameErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
                 <mat-form-field>
-                    <input matInput placeholder="ArterialPressure" type="number" formControlName="arterialPressure"
+                    <input matInput placeholder="{{'Health.arterialPressure' | translate}}" type="number" formControlName="arterialPressure"
                         [(ngModel)]="health.arterialPressure">
                     <!-- <mat-error *ngIf="formGroup.controls.name.invalid">{{getNameErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
                 <mat-form-field>
-                    <input matInput type="number" placeholder="NumberOfRespiratoryMovements" formControlName="numberOfRespiratoryMovements" 
+                    <input matInput type="number" placeholder="{{'Health.numberOfRespiratoryMovements' | translate}}" formControlName="numberOfRespiratoryMovements" 
                     [(ngModel)]="health.numberOfRespiratoryMovements">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
 
                 <mat-form-field>
-                    <input matInput type="number" placeholder="HeartRate" formControlName="heartRate"
+                    <input matInput type="number" placeholder="{{'Health.heartRate' | translate}}" formControlName="heartRate"
                         [(ngModel)]="health.heartRate">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
 
                 <mat-form-field>
-                    <input matInput type="number" placeholder="Hemoglobin" formControlName="hemoglobin"
+                    <input matInput type="number" placeholder="{{'Health.hemoglobin' | translate}}" formControlName="hemoglobin"
                         [(ngModel)]="health.hemoglobin">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
 
                 <mat-form-field>
-                    <input matInput type="number" placeholder="Weight Bilirubint" formControlName="weighBilirubint"
-                        [(ngModel)]="health.weighBilirubint">
-                    <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
-                </mat-form-field>
-                <br>
-
-                <mat-form-field>
-                    <input matInput type="number" placeholder="Bilirubin" formControlName="bilirubin"
+                    <input matInput type="number" placeholder="{{'Health.bilirubin' | translate}}" formControlName="bilirubin"
                         [(ngModel)]="health.bilirubin">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
@@ -55,7 +48,7 @@
                 <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
 
                 <mat-form-field>
-                    <input matInput type="number" placeholder="BloodSugar" formControlName="bloodSugar"
+                    <input matInput type="number" placeholder="{{'Health.sugarInBlood' | translate}}" formControlName="bloodSugar"
                         [(ngModel)]="health.bloodSugar">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
@@ -63,7 +56,7 @@
                 <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
 
                 <mat-form-field>
-                    <input matInput type="number" placeholder="WhiteBloodCells" formControlName="whiteBloodCells"
+                    <input matInput type="number" placeholder="{{'Health.whiteBloodCells' | translate}}" formControlName="whiteBloodCells"
                         [(ngModel)]="health.whiteBloodCells">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
@@ -71,7 +64,7 @@
                 <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
 
                 <mat-form-field>
-                    <input matInput type="number" placeholder="BodyTemperature" formControlName="bodyTemperature"
+                    <input matInput type="number" placeholder="{{'Health.bodyTemperature' | translate}}" formControlName="bodyTemperature"
                         [(ngModel)]="health.bodyTemperature">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
@@ -79,11 +72,11 @@
                 <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
 
             </mat-dialog-content>
-            <button class="btn-submit" mat-raised-button type="submit" (click)="submit(health)"
-                color="primary">Save</button>
+            <button routerLink="/account/profile" class="btn-submit" mat-raised-button type="submit" (click)="submit(health)"
+                color="primary">{{'Health.save' | translate}}</button>
         </form>
         <div mat-dialog-actions>
-            <button mat-raised-button class="btn-close" (click)="onCancelClick()" color="warn">Cancel</button>
+            <button mat-raised-button class="btn-close" routerLink="/account/profile" color="warn">{{'Health.cancel' | translate}}</button>
         </div>
     </div>
 </div>

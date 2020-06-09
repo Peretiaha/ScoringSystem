@@ -4,6 +4,7 @@ using ScoringSystem.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace ScoringSystem.Web.Mapper
@@ -22,6 +23,14 @@ namespace ScoringSystem.Web.Mapper
                 .ReverseMap();
             CreateMap<Health, HealthViewModel>().ReverseMap();
             CreateMap<BankAccount, BankAccountViewModel>().ReverseMap();
+            CreateMap<User, UserViewModel>()
+                .ForMember(x => x.Photo, w => w.MapFrom(x => "data:image/jpeg;base64," + Convert.ToBase64String(x.Photo)))                
+                .ForMember(x => x.Country, w => w.MapFrom(x => x.Address.Country))
+                .ReverseMap();
+
+            CreateMap<User, SmallCustomerViewModel>()
+                .ForMember(x=>x.Roles, w=>w.MapFrom(x=>x.UsersRoles.Select(e=>e.Role)))
+                .ReverseMap();
 
         }
     }

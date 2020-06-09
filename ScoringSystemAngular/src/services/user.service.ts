@@ -9,6 +9,8 @@ import { Health } from 'src/models/Health';
 import { BankAccount } from 'src/models/BankAccount';
 import { LoginViewModel } from 'src/models/LoginViewModel';
 import { strict } from 'assert';
+import { UserChangeRole } from 'src/models/user-change-role';
+import { ChangeRoles } from 'src/models/changeRoles';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,25 @@ export class UserService {
 
   constructor(private http: HttpClient) { 
     this.appUrl = "https://localhost:44322/api/account";
+  }
+
+  fetchCustomerUsers() : Observable<UserChangeRole[]> {
+    var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')});
+    var url = "https://localhost:44322/api/customer/customers";
+    return this.http.get<UserChangeRole[]>(url, {headers: tokenHeader});
+  }
+
+  changeCustomerRole(changeRoles: ChangeRoles) {
+    var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')});
+    var url = "https://localhost:44322/api/customer/change-role";
+    console.log(changeRoles);
+    return this.http.post(url, changeRoles, {headers: tokenHeader})
+    .pipe(catchError(this.errorHandler));
+  }
+
+  fetchUsers() : Observable<User[]> {
+    var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')});
+    return this.http.get<User[]>(this.appUrl+"/all", {headers: tokenHeader});
   }
 
   createUser(user: RegisterUser) {

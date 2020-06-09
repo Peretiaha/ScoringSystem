@@ -1,6 +1,6 @@
 <div class="container">
     <legend class="main-text">
-        <h2><b>Login</b></h2>
+        <h2><b>{{'Login.login' | translate}}</b></h2>
     </legend><br>
     <div class="login-form">
         <form [formGroup]="formGroup" mat-dialog-content class="column-group">
@@ -13,17 +13,17 @@
                 </mat-form-field>
                 <br>
                 <mat-form-field>
-                    <input matInput placeholder="Password" type="password" formControlName="password"
+                    <input matInput placeholder="{{'Login.password' | translate}}" type="password" formControlName="password"
                         [(ngModel)]="loginViewModel.password">
                     <mat-error *ngIf="formGroup.controls.password.invalid">{{getPasswordErrorMessage()}}</mat-error>
                 </mat-form-field>
                 <br>                
             </mat-dialog-content>
             <button class="btn-submit" mat-raised-button type="submit" (click)="submit(loginViewModel)"
-                color="primary">Login</button>
+                color="primary">{{'Login.login' | translate}}</button>
         </form>
         <div mat-dialog-actions>
-            <button mat-button color="primary"  class="btn-submit" routerLink="/account/registration" >Sign Up</button>
+            <button mat-button color="primary"  class="btn-submit" routerLink="/account/registration" >{{'Login.signUp' | translate}}</button>
         </div>
     </div>
 </div>

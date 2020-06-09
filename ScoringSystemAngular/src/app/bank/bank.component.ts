@@ -37,7 +37,8 @@ export class BankComponent implements OnInit {
   openCreateModal() {
     const dialogRef = this.createDialog.open(BankModalComponent, {
       width: '500px',
-      data: { action: '+ Create New Bank' }
+      data: { action: '+ Create New Bank' },
+      panelClass: 'custom-dialog-container' 
     });
 
     dialogRef.afterClosed().subscribe(() =>
@@ -48,6 +49,7 @@ export class BankComponent implements OnInit {
   onEditModule(bank: Bank) {
     const dialogRef = this.createDialog.open(BankModalComponent, {
       width: '500px',
+      panelClass: 'custom-dialog-container' ,
       data: { action: 'Edit', collinsListId: this.id, bank }
     });
 
@@ -61,6 +63,7 @@ export class BankComponent implements OnInit {
       this.showInfoWindow('Nothing to delete');
     } else {
       const dialogRef = this.createDialog.open(DeleteModalComponent, {
+        panelClass: 'custom-dialog-container',
         width: '500px'
       });
       dialogRef.afterClosed().subscribe(x => {
@@ -80,6 +83,7 @@ export class BankComponent implements OnInit {
 
   onDelete(bookId: number) {
     const dialogRef = this.createDialog.open(DeleteModalComponent, {
+      panelClass: 'custom-dialog-container', 
       width: '500px'
     });
     dialogRef.afterClosed().subscribe(x => {

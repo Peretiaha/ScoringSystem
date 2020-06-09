@@ -37,3 +37,30 @@ button.paste {
 .delete-btn {
     width: 9rem;
 }
+
+button.add {
+    width: 150px;
+    height: 40px;
+    color: white;
+    background-color: #474b47;
+    border-style: groove;
+    border-color: yellowgreen;
+}
+
+.list-amount-title {
+    color: white;
+}
+
+mat-table {
+    color: white;
+    background-color: #474b4f;
+}
+
+mat-checkbox, mat-header-cell, mat-cell {
+    color: white;
+}
+
+mat-row, mat-header-row {
+    border-color: yellowgreen;
+}
+

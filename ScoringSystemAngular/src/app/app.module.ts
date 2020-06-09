@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BankComponent } from './bank/bank.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {CdkTableModule} from '@angular/cdk/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material-module';
@@ -21,7 +21,15 @@ import { MainComponent } from './main/main.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { UsersListComponent } from './users-list/users-list.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { ChangeRoleComponent } from './change-role/change-role.component';
+import { CustomerComponent } from './customer/customer.component';
 
+export function HttpLoaderFactory( http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -38,6 +46,9 @@ import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
     ForbiddenComponent,
     MainComponent,
     UserProfileComponent,
+    UsersListComponent,
+    ChangeRoleComponent,
+    CustomerComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +61,15 @@ import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     NgbModule,
     NgbPaginationModule,
-    NgbAlertModule
+    NgbAlertModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
+    
     ],
   providers: [],
   bootstrap: [AppComponent]

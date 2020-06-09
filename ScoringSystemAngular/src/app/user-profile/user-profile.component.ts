@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/services/user.service';
 import { User } from 'src/models/User';
-import { JwPaginationComponent } from 'jw-angular-pagination';
 import { UsersHealth } from 'src/models/UsersHealth';
+import { PageEvent } from '@angular/material/paginator/paginator';
+import { BankAccount } from 'src/models/BankAccount';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -12,31 +14,23 @@ import { UsersHealth } from 'src/models/UsersHealth';
 })
 export class UserProfileComponent implements OnInit {
 
-  items = [];
   active = 1;
-  page = 1;
   user = new User();
-  pageOfHealth: Array<UsersHealth>;
+  pageEventHealth: PageEvent;
+  pageEventBankAccount: PageEvent;
+  userHealth = new Array<UsersHealth>();
+  userBankAccounts = new Array<BankAccount>();
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    public translate: TranslateService
   ) { }
 
   ngOnInit(): void {
     this.userService.getUserProfile().subscribe(x=> {
-      this.user = x;      
-      this.pageOfHealth = this.user.usersHealth;
+      this.user = x;  
+      this.userBankAccounts = x.bankAccounts;
+      this.userHealth = x.usersHealth.sort((a, b) => new Date(b.health.analizDate).getTime() - new Date(a.health.analizDate).getTime());
     });
-    this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
   }
-
-  Print() {
-    console.log(this.page)
-  }
-
-  onChangePage(pageOfHealth: Array<UsersHealth>) {
-    // update current page of items
-    this.pageOfHealth = pageOfHealth;
-}
-
 }

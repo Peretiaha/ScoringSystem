@@ -1,32 +1,32 @@
 <div class="container">
     <legend class="main-text">
-        <h2><b>Add Address to {{userName}}`s account</b></h2>
+        <h2><b>{{'BankAccount.addBankAccount' | translate}} {{userName}}`s {{'BankAccount.account' | translate}}</b></h2>
     </legend><br>
     <div class="registratiom-form">
         <form [formGroup]="formGroup" mat-dialog-content class="column-group">
             <mat-dialog-content>
 
                 <mat-form-field>
-                    <input matInput placeholder="Card Number" type="text" formControlName="cardNumber"
+                    <input matInput placeholder="{{'BankAccount.cardNumber' | translate}}" type="text" formControlName="cardNumber"
                         [(ngModel)]="bankAccount.cardNumber">
                     <mat-error *ngIf="formGroup.controls.cardNumber.invalid">{{getCardErrorMessage()}}</mat-error>
                 </mat-form-field>
                 <br>
                 <mat-form-field>
-                    <input matInput placeholder="Debt" value="0" type="number" formControlName="debt"
+                    <input matInput placeholder="{{'BankAccount.debt' | translate}}" value="0" type="number" formControlName="debt"
                         [(ngModel)]="bankAccount.debt">
                     <!-- <mat-error *ngIf="formGroup.controls.name.invalid">{{getNameErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
                 <mat-form-field>
-                    <input matInput type="number" value="0" placeholder="Credit" formControlName="credit"
+                    <input matInput type="number" value="0" placeholder="{{'BankAccount.credit' | translate}}" formControlName="credit"
                         [(ngModel)]="bankAccount.credit">
                     <!-- <mat-error *ngIf="formGroup.controls.linkToSite.invalid">{{getLinkToSiteErrorMessage()}}</mat-error> -->
                 </mat-form-field>
                 <br>
 
                 <mat-form-field>
-                    <mat-label>Select Bank</mat-label>
+                    <mat-label>{{'BankAccount.selectBank' | translate}}</mat-label>
                     <mat-select [(ngModel)]="bankName" name="bankName" formControlName="bankName">
                         <mat-option *ngFor="let bank of banks" [value]="bank.name">
                             {{bank.name}}
@@ -35,11 +35,11 @@
                 </mat-form-field>
 
             </mat-dialog-content>
-            <button class="btn-submit" mat-raised-button type="submit" (click)="submit(bankAccount)"
-                color="primary">Save</button>
+            <button routerLink="/account/profile" class="btn-submit" mat-raised-button type="submit" (click)="submit(bankAccount)"
+                color="primary">{{'BankAccount.save' | translate}}</button>
         </form>
         <div mat-dialog-actions>
-            <button mat-raised-button class="btn-close" (click)="onCancelClick()" color="warn">Cancel</button>
+            <button mat-raised-button class="btn-close" routerLink="/account/profile" color="warn">{{'BankAccount.cancel' | translate}}</button>
         </div>
     </div>
 </div>

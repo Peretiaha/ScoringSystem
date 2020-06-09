@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Address } from 'src/models/Address';
 import { User } from 'src/models/User';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-address',
@@ -23,7 +24,8 @@ export class AddressComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private popUp: MatSnackBar,
-    private router: Router) {
+    private router: Router,
+    public translate: TranslateService) {
     this.createForm();
   }
 

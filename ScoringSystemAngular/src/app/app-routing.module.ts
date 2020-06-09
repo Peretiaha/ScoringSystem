@@ -12,11 +12,16 @@ import { ForbiddenComponent } from './login/forbidden/forbidden.component';
 import { AuthGuard } from './auth/auth.guard';
 import { MainComponent } from './main/main.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { ChangeRoleComponent } from './change-role/change-role.component';
+import { CustomerComponent } from './customer/customer.component';
 
 
 const routes: Routes = [
   { path: 'banks', component: BankComponent, canActivate:[AuthGuard], data: { permittedRoles:['Admin'] }},
-  { path: '', redirectTo: '/main', pathMatch: 'full' },
+  { path: 'account/:id/change-role', component: ChangeRoleComponent, canActivate:[AuthGuard], data: { permittedRoles:['Admin'] }},
+  { path: 'account/customers', component: CustomerComponent, canActivate:[AuthGuard], data: { permittedRoles:['Admin'] }},
+  { path: '', redirectTo: '/account/login', pathMatch: 'full' },
   { path: 'account/', component: UserComponent },
   { path: 'account/registration', component: RegistrationComponent },
   { path: 'account/:id/address/add', component: AddressComponent, canActivate:[AuthGuard], data: { permittedRoles:['Customer'] }},
@@ -24,8 +29,9 @@ const routes: Routes = [
   { path: 'account/:id/bankAccount/add', component: BankAccountComponent, canActivate:[AuthGuard], data: { permittedRoles:['Customer'] }},
   { path: 'account/profile', component: UserProfileComponent, canActivate:[AuthGuard], data: { permittedRoles:['Customer'] }},
   { path: 'account/login', component: LoginComponent},
+  { path: 'account/users', component: UsersListComponent, canActivate:[AuthGuard], data: { permittedRoles:['Manager'] }},
   { path: 'forbidden', component: ForbiddenComponent},
-  { path: 'main', component: MainComponent },
+  { path: 'main', component: MainComponent, canActivate:[AuthGuard], data: { permittedRoles:['Admin', 'Manager'] } },
 
 ];
 

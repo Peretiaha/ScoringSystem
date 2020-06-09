@@ -52,13 +52,60 @@ namespace ScoringSystem.BLL.Services
 
         public void Edit(User entity)
         {
-            _unitOfWork.GetRepository<User>().Update(entity);
+            var repository = _unitOfWork.GetRepository<User>();
+            repository.Update(entity);
             _unitOfWork.Commit();
+        }
+
+        public IEnumerable<User> GetAllCustomers()
+        {
+            var roleRepository = _unitOfWork.GetRepository<Role>();
+
+            var adminRole = roleRepository.GetSingle(x => x.Name == "Admin");
+
+            var users = _unitOfWork.GetRepository<User>().GetMany(x=>x.UsersRoles.All(w=>w.RoleId != adminRole.RoleId),null, x=>x.UsersRoles);
+
+            foreach (var user in users)
+            {
+                foreach (var userRole in user.UsersRoles)
+                {
+                    userRole.Role = roleRepository.GetSingle(x => x.RoleId == userRole.RoleId);
+                }
+            }
+
+            return users;
         }
 
         public IEnumerable<User> GetAllUsers()
         {
-            return _unitOfWork.GetRepository<User>().GetMany();
+            var users = _unitOfWork.GetRepository<User>().GetMany(null, null, x => x.Address, x => x.BankAccounts, x => x.UsersHealth);
+
+            foreach(var user in users)
+            {
+                if (user.Address != null)
+                {
+                    user.Address.User = null;
+                }
+
+                if (user.BankAccounts != null)
+                {
+                    foreach(var bank in user.BankAccounts)
+                    {
+                        bank.User = null;
+                    }
+                }
+
+                if (user.UsersHealth != null)
+                {
+                    foreach (var health in user.UsersHealth)
+                    {
+                        health.User = null;
+                        health.Health = _unitOfWork.GetRepository<Health>().GetSingle(x => x.HealthId == health.HealthId);
+                    }
+                }
+            }
+
+            return users;
         }
 
         public User GetUserByEmail(string email)
@@ -83,7 +130,16 @@ namespace ScoringSystem.BLL.Services
 
             foreach (var account in user.BankAccounts)
             {
+                account.Bank = _unitOfWork.GetRepository<Bank>().GetSingle(x => x.BankId == account.BankId);
+                account.Bank.BankAccounts = null;
                 account.User = null;
+            }
+
+            user.UsersRoles = _unitOfWork.GetRepository<UsersRoles>().GetMany(x=>x.UserId == userId);
+
+            foreach (var userRoles in user.UsersRoles)
+            {
+                userRoles.User = null;
             }
 
             return user;

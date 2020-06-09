@@ -1,119 +1,260 @@
 <div class="content">
-  <h1>{{user.name}}`s Profile</h1>
+  <h1>{{user.name}}`s {{'Profile.profile' | translate}}</h1>
   <div class="image">
-    <img style="border-style: groove;border-color: yellowgreen;border-radius: 10px;" 
-      height="350" width="280" class="image-fit" src={{user.photo}} />
+    <img style="border-style: groove;border-color: yellowgreen;border-radius: 10px;" height="350" width="280"
+      class="image-fit" src={{user.photo}} />
   </div>
   <div class="main-info block">
     <div class="title">
-      <h4>Main Informaition</h4>
-      <hr color="yellowgreen"/>
+      <h4>{{'Profile.mainInfo' | translate}}</h4>
+      <hr color="yellowgreen" />
     </div>
     <div class="data">
 
-    <table class="table table-striped info">    
-      <tbody>
-      <tr >
-        <td class="icon"><mat-icon>perm_identity</mat-icon></td>
-        <td>Name: </td>
-        <td>{{ user.name  }}</td>
-      </tr>
-      <tr >
-        <td><mat-icon>perm_identity</mat-icon></td>
-        <td>LastName: </td>
-        <td>{{ user.lastName  }}</td>
-      </tr>
-      <tr >
-        <td class="icon"><mat-icon>alternate_email</mat-icon></td>
-        <td>Email: </td>
-        <td>{{ user.email  }}</td>
-      </tr>
-      <tr >
-        <td class="icon"><mat-icon>cake</mat-icon></td>
-        <td>Birthday: </td>
-        <td>{{ user.birthday  }}</td>
-      </tr>
-      </tbody>
-    </table>    
-  </div>
+      <table class="table table-striped info">
+        <tbody>
+          <tr>
+            <td class="icon">
+              <mat-icon>perm_identity</mat-icon>
+            </td>
+            <td>{{'Profile.name' | translate}}: </td>
+            <td>{{ user.name  }}</td>
+          </tr>
+          <tr>
+            <td>
+              <mat-icon>perm_identity</mat-icon>
+            </td>
+            <td>{{'Profile.lastName' | translate}}: </td>
+            <td>{{ user.lastName  }}</td>
+          </tr>
+          <tr>
+            <td class="icon">
+              <mat-icon>alternate_email</mat-icon>
+            </td>
+            <td>{{'Profile.email' | translate}}: </td>
+            <td>{{ user.email  }}</td>
+          </tr>
+          <tr>
+            <td class="icon">
+              <mat-icon>cake</mat-icon>
+            </td>
+            <td>{{'Profile.birthday' | translate}}: </td>
+            <td>{{ user.birthday | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
   </div>
   <div class="person-data block">
 
-    <ul (click)="Print()" ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
       <li [ngbNavItem]="1">
-        <a ngbNavLink>Address</a>
+        <a ngbNavLink>{{'Profile.address' | translate}}</a>
         <ng-template ngbNavContent>
           <div *ngIf="user.address != null" class="address">
-            <table class="table table-striped info">    
+            <table class="table table-striped info">
               <tbody>
-              <tr >
-                <td class="icon"><mat-icon> location_on</mat-icon></td>
-                <td>AddressLine1: </td>
-                <td>{{ user.address.addressLine1  }}</td>
-              </tr>
-              <tr >
-                <td class="icon"><mat-icon> location_on</mat-icon></td>
-                <td>AddressLine2: </td>
-                <td>{{ user.address.addressLine2  }}</td>
-              </tr>
-              <tr >
-                <td class="icon"><mat-icon> local_post_office</mat-icon></td>
-                <td>Post Code: </td>
-                <td>{{ user.address.postCode  }}</td>
-              </tr>
-              <tr >
-                <td class="icon"><mat-icon>public</mat-icon></td>
-                <td>Country: </td>
-                <td>{{ user.address.country  }}</td>
-              </tr>
-              <tr >
-                <td class="icon"><mat-icon>location_city</mat-icon></td>
-                <td>City: </td>
-                <td>{{ user.address.city  }}</td>
-              </tr>
-              <tr >
-                <td class="icon"><mat-icon>domain</mat-icon></td>
-                <td>State Or Province: </td>
-                <td>{{ user.address.stateOrProvince  }}</td>
-              </tr>            
+                <tr>
+                  <td class="icon">
+                    <mat-icon> location_on</mat-icon>
+                  </td>
+                  <td>{{'Profile.addressLine1' | translate}}: </td>
+                  <td>{{ user.address.addressLine1  }}</td>
+                </tr>
+                <tr>
+                  <td class="icon">
+                    <mat-icon> location_on</mat-icon>
+                  </td>
+                  <td>{{'Profile.addressLine2' | translate}}: </td>
+                  <td>{{ user.address.addressLine2  }}</td>
+                </tr>
+                <tr>
+                  <td class="icon">
+                    <mat-icon> local_post_office</mat-icon>
+                  </td>
+                  <td>{{'Profile.postCode' | translate}}: </td>
+                  <td>{{ user.address.postCode  }}</td>
+                </tr>
+                <tr>
+                  <td class="icon">
+                    <mat-icon>public</mat-icon>
+                  </td>
+                  <td>{{'Profile.country' | translate}}: </td>
+                  <td>{{ user.address.country  }}</td>
+                </tr>
+                <tr>
+                  <td class="icon">
+                    <mat-icon>location_city</mat-icon>
+                  </td>
+                  <td>{{'Profile.city' | translate}}: </td>
+                  <td>{{ user.address.city  }}</td>
+                </tr>
+                <tr>
+                  <td class="icon">
+                    <mat-icon>domain</mat-icon>
+                  </td>
+                  <td>{{'Profile.stateOrProvince' | translate}}: </td>
+                  <td>{{ user.address.stateOrProvince  }}</td>
+                </tr>
 
               </tbody>
-            </table>    
+            </table>
           </div>
           <div class="address">
-            <button routerLink="/account/{{user.userId}}/address/add" mat-raised-button type="submit"
-              color="primary">Add Address</button>
+            <button *ngIf="user.address == null" routerLink="/account/{{user.userId}}/address/add" mat-raised-button type="submit"
+              color="primary">{{'Profile.addAddress' | translate}}</button>
+              <button *ngIf="user.address != null" routerLink="/account/{{user.userId}}/address/add" mat-raised-button type="submit"
+              color="primary">{{'Profile.editAddress' | translate}}</button>
           </div>
         </ng-template>
       </li>
 
       <li [ngbNavItem]="2">
-        <a ngbNavLink>Health</a>
+        <a ngbNavLink>{{'Profile.health' | translate}}</a>
         <ng-template ngbNavContent>
-          <div class="health">
+          <div *ngIf="userHealth != null" class="health">
+            <mat-paginator [length]="userHealth.length" [pageSize]="1" (page)="pageEventHealth = $event">              
+            </mat-paginator>
 
+            <div *ngIf="pageEventHealth">
+              <table class="table table-striped info">
+                <tbody>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon>date_range</mat-icon>
+                    </td>
+                    <td>{{'Profile.analizDate' | translate}}: </td>
+                    <td>{{ userHealth[pageEventHealth.pageIndex].health.analizDate | date  }}</td>
+                  </tr>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon>line_weight</mat-icon>
+                    </td>
+                    <td>{{'Profile.weight' | translate}}: </td>
+                    <td>{{ userHealth[pageEventHealth.pageIndex].health.weight }} {{'Profile.kg' | translate}}</td>
+                  </tr>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon>colorize</mat-icon>
+                    </td>
+                    <td>{{'Profile.bodyTemperature' | translate}}: </td>
+                    <td>{{ userHealth[pageEventHealth.pageIndex].health.bodyTemperature}} &#8451;</td>
+                  </tr>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon>keyboard_arrow_down</mat-icon>
+                    </td>
+                    <td>{{'Profile.arterialPressure' | translate}}: </td>
+                    <td>{{ userHealth[pageEventHealth.pageIndex].health.arterialPressure  }} {{'Profile.mmHg' | translate}}</td>
+                  </tr>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon> show_chart</mat-icon>
+                    </td>
+                    <td>{{'Profile.heartRate' | translate}}: </td>
+                    <td>{{ userHealth[pageEventHealth.pageIndex].health.heartRate }} {{'Profile.perMin' | translate}}</td>
+                  </tr>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon> format_list_numbered</mat-icon>
+                    </td>
+                    <td>{{'Profile.numberOfRespiratoryMovements' | translate}}: </td>
+                    <td>{{ userHealth[pageEventHealth.pageIndex].health.numberOfRespiratoryMovements  }}</td>
+                  </tr>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon>hdr_strong</mat-icon>
+                    </td>
+                    <td>{{'Profile.hemoglobin' | translate}}: </td>
+                    <td>{{ userHealth[pageEventHealth.pageIndex].health.hemoglobin }} {{'Profile.g/l' | translate}}</td>
+                  </tr>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon>gesture</mat-icon>
+                    </td>
+                    <td>{{'Profile.bilirubin' | translate}}: </td>
+                    <td>{{ userHealth[pageEventHealth.pageIndex].health.bilirubin}} {{'Profile.μmol/l' | translate}}</td>
+                  </tr>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon> format_color_reset</mat-icon>
+                    </td>      
+                    <td>{{'Profile.sugarInBlood' | translate}}: </td>              
+                    <td>{{ userHealth[pageEventHealth.pageIndex].health.bloodSugar }} {{'Profile.μmol/l' | translate}}</td>
+                  </tr>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon> bubble_chart</mat-icon>
+                    </td>
+                    <td>{{'Profile.whiteBloodCells' | translate}}: </td>
+                    <td>{{ userHealth[pageEventHealth.pageIndex].health.whiteBloodCells }} x10*9</td>
+                  </tr>
+ 
+                </tbody>
+              </table>
+            </div>
 
-            <!-- <div class="card-body">
-              <div *ngFor="let item of pageOfHealth">{{item.health.bloodSugar}}</div>
-          </div>
-          <div class="card-footer pb-0 pt-3">
-              <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
-          </div> -->
-            
-
-            <button routerLink="/account/{{user.userId}}/health/add" mat-raised-button type="submit" color="primary">Add
-              Health</button>
+            <button routerLink="/account/{{user.userId}}/health/add" mat-raised-button type="submit" color="primary">
+              {{'Profile.addHealth' | translate}}</button>
           </div>
         </ng-template>
       </li>
 
       <li [ngbNavItem]="3">
-        <a ngbNavLink>Bank Account</a>
+        <a ngbNavLink>{{'Profile.bankAccount' | translate}}</a>
         <ng-template ngbNavContent>
-          <div class="bank-account">
+          <div *ngIf="userBankAccounts != null" class="bank-account">
+
+            <mat-paginator [length]="userBankAccounts.length" [pageSize]="1" (page)="pageEventBankAccount = $event">              
+            </mat-paginator>
+
+            <div *ngIf="pageEventBankAccount">
+              <table class="table table-striped info">
+                <tbody>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon>account_balance</mat-icon>
+                    </td>
+                    <td>{{'Profile.bank' | translate}}: </td>
+                    <td>{{ userBankAccounts[pageEventBankAccount.pageIndex].bank.name }}</td>
+                  </tr>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon>link</mat-icon>
+                    </td>
+                    <td>{{'Profile.bankWebSite' | translate}}: </td>
+                    <td>{{ userBankAccounts[pageEventBankAccount.pageIndex].bank.linkToSite }}</td>
+                  </tr>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon>payment</mat-icon>
+                    </td>
+                    <td>{{'Profile.cardNumber' | translate}}: </td>
+                    <td>{{ userBankAccounts[pageEventBankAccount.pageIndex].cardNumber}}</td>
+                  </tr>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon> attach_money</mat-icon>
+
+                    </td>
+                    <td>{{'Profile.debt' | translate}}: </td>
+                    <td>{{ userBankAccounts[pageEventBankAccount.pageIndex].debt}} $</td>
+                  </tr>
+                  <tr>
+                    <td class="icon">
+                      <mat-icon> attach_money</mat-icon>
+                    </td>
+                    <td>{{'Profile.credit' | translate}}: </td>
+                    <td>{{ userBankAccounts[pageEventBankAccount.pageIndex].credit}} $</td>
+                  </tr>                  
+ 
+                </tbody>
+              </table>
+            </div>
+
             <button routerLink="/account/{{user.userId}}/bankAccount/add" mat-raised-button type="submit"
-              color="primary">Add Bank Account</button>
+              color="primary">{{'Profile.addBankAccount' | translate}}</button>
           </div>
         </ng-template>
       </li>

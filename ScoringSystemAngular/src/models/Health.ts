@@ -7,10 +7,10 @@ export class Health {
     numberOfRespiratoryMovements: number;
     heartRate: number;
     hemoglobin: number;
-    weighBilirubint: number;
     bilirubin: number;
     bloodSugar: number;
     whiteBloodCells: number;
     bodyTemperature: number;
     usersHealth: UsersHealth[];
+    analizDate: Date;
 }

@@ -1,0 +1,56 @@
+<div class="list-amount-title">
+    <p>Showing {{dataSource.data.length}} customers </p>
+</div>
+<div class="books-main">
+    <div class="books">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="lastName">
+                <mat-header-cell *matHeaderCellDef> LastName </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="roles">
+                <mat-header-cell *matHeaderCellDef> Roles </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <ul>
+                        <span *ngFor="let el of element.roles">
+                            <li>{{el.name}}</li>
+                        </span>
+                    </ul>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="drop">
+                <mat-header-cell *matHeaderCellDef> Select Roles </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <form>
+                        <mat-select multiple [(ngModel)]="selectedRoles" name="selectedRoles">
+                            <mat-option *ngFor="let role of roles" [value]="role.name">
+                                {{role.name}}
+                            </mat-option>
+                        </mat-select>
+
+                        <!-- <button mat-raised-button routerLink="/account/{{element.userId}}/change-role"> -->
+                        <button mat-raised-button (click)="onSelect(element.userId)">
+
+                            Change
+                        </button>
+                    </form>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+</div>

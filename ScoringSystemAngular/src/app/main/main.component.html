@@ -1,1 +1,10 @@
-<p>main works!</p>
+<div class="main">
+    <div *ngIf="userRole == 'Admin'" class="admin">
+        <button routerLink="/banks" mat-button>{{'Main.banks' | translate}}</button>
+        <button routerLink="/account/customers" mat-button>{{'Main.banks' | translate}}</button>
+    </div>
+    <div *ngIf="userRole == 'Manager'" class="manager">   
+        <button  routerLink="/account/users" mat-button>{{'Main.users' | translate}}</button>
+    </div>
+</div>
+

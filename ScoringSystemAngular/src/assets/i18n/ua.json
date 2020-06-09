@@ -1,0 +1,108 @@
+{
+    "App": {
+        "login": "Вхід",
+        "logout": "Вийти",
+        "lang": "Ua",
+        "language": "Мова"
+
+    },
+    "Login": {
+        "login": "Вхід",
+        "password": "Пароль",
+        "signUp": "Регистрація" 
+    },
+    "Registration" : {
+        "registrationForm" : "Форма регістрації",
+        "name": "Ім'я",
+        "email": "Електронна пошта",
+        "lastName": "Прізвище",
+        "birthday": "День народження",
+        "password": "Пароль",
+        "confirmPassword": "Підтвердите пароль",
+        "save": "Зберегти",
+        "cancel" : "Відміна"
+    },
+    "Profile": {
+        "profile" : "Профіль",
+        "mainInfo": "Основна інформація",
+        "name": "Ім'я",
+        "lastName": "Прізвище",
+        "email":"Електронна пошта",
+        "birthday": "День народження",
+        "address": "Адреса",
+        "addressLine1": "Рядок адреси 1",
+        "addressLine2": "Рядок адреси 2",
+        "postCode": "Поштовий індекс",
+        "country": "Країна",
+        "city": "Місто",
+        "stateOrProvince": "Штат або провінція",
+        "editAddress": "Редагувати адресу",
+        "addAddress": "Додати адресу",
+        "health": "Здоров'я",
+        "analizDate": "Дата аналізу",
+        "weight": "Вага",
+        "bodyTemperature": "Температура тіла",
+        "arterialPressure": "Артеріальний тиск",
+        "heartRate": "Пульс",
+        "numberOfRespiratoryMovements": "Кількість дихальних рухів",
+        "hemoglobin": "Гемоглобін",
+        "bilirubin": "Білірубін",
+        "sugarInBlood": "Цукор у крові",
+        "whiteBloodCells": "Лейкоцити",
+        "addHealth": "Додайте результати аналізу",
+        "kg": "кг",
+        "mmHg": "мм рт.ст.",
+        "perMin": "за хв",
+        "g/l": "г / л",
+        "μmol/l": "мкмоль / л",
+        "bankAccount": "Банківський Рахунок",
+        "bank": "Банк",
+        "bankWebSite": "Веб-сайт банку",
+        "cardNumber": "Номер картки",
+        "debt": "Борг",
+        "credit": "Кредит" ,
+        "addBankAccount": "Додати банківський рахунок"
+    },
+    "Address": {
+        "addAddress": "Додати адресу до",
+        "account": "аккаунту",
+        "addressLine1": "Рядок адреси 1",
+        "addressLine2": "Рядок адреси 2",
+        "postCode": "Поштовий індекс",
+        "country": "Країна",
+        "city": "Місто",
+        "stateOrProvince": "Штат або провінція",
+        "save": "Зберегти",
+        "cancel" : "Відміна"
+    },
+    "Health": {
+        "addHealth":"Додайте дані про здоров'я до",
+        "account": "аккаунту",
+        "weight": "Вага",
+        "bodyTemperature": "Температура тіла",
+        "arterialPressure": "Артеріальний тиск",
+        "heartRate": "Пульс",
+        "numberOfRespiratoryMovements": "Кількість дихальних рухів",
+        "hemoglobin": "Гемоглобін",
+        "bilirubin": "Білірубін",
+        "sugarInBlood": "Цукор у крові",
+        "whiteBloodCells": "Лейкоцити",
+        "save": "Зберегти",
+        "cancel" : "Відміна"
+    },
+    "BankAccount": {
+        "addBankAccount":"Додати банківський рахунок до ",
+        "account": "аккаунту",
+        "selectBank": "Виберіть банк",
+        "bankWebSite": "Веб-сайт банку",
+        "cardNumber": "Номер картки",
+        "debt": "Борг",
+        "credit": "Кредит" ,
+        "save": "Зберегти",
+        "cancel" : "Відміна"
+    },
+    "Main" :{
+        "banks": "Банки",
+        "users": "Користувачи"
+    }
+}

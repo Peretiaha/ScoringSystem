@@ -1,0 +1,63 @@
+table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: yellowgreen;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: yellowgreen;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 250px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+  
+mat-table, table {
+    color: white;
+    background-color: #474b4f;
+}
+
+mat-checkbox, mat-header-cell, mat-cell, th, td {
+    color: white;
+}
+
+mat-row, mat-header-row {
+    border-color: yellowgreen;
+}
+
+.expandedDetail {
+    background-color: yellowgreen;
+}
